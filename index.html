@@ -54,33 +54,36 @@
 
         .background-layer {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -20;
             background-color: #02040a;
-            background-image: url("background.PNG");
+            /* تم إرجاع اسم الصورة إلى background.PNG */
+            background-image: url("background.PNG"); 
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
             transform: translateZ(0);
         }
 
+        /* طبقة تظليل لضمان عدم تداخل الخلفية مع النص */
         .background-overlay {
             position: fixed;
             inset: 0;
             z-index: -19;
             pointer-events: none;
-
             background:
                 linear-gradient(
                     to bottom,
-                    rgba(0,0,0,0.16) 0%,
-                    rgba(0,0,0,0.08) 30%,
-                    rgba(0,0,0,0.18) 60%,
-                    rgba(0,0,0,0.42) 100%
+                    rgba(0,0,0,0.35) 0%,
+                    rgba(0,0,0,0.15) 30%,
+                    rgba(0,0,0,0.35) 60%,
+                    rgba(0,0,0,0.65) 100%
                 );
-
             box-shadow:
-                inset 0 0 150px rgba(0,0,0,0.72);
+                inset 0 0 150px rgba(0,0,0,0.85);
         }
 
         .background-vignette {
@@ -91,9 +94,9 @@
             background:
                 radial-gradient(
                     ellipse at center,
-                    transparent 28%,
-                    rgba(0,0,0,0.16) 62%,
-                    rgba(0,0,0,0.65) 100%
+                    transparent 15%,
+                    rgba(0,0,0,0.3) 60%,
+                    rgba(0,0,0,0.8) 100%
                 );
         }
 
@@ -105,22 +108,18 @@
             position: fixed;
             inset: 0;
             z-index: 9999;
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
             overflow: hidden;
             cursor: pointer;
-
             background:
                 linear-gradient(
-                    rgba(0,0,0,0.38),
-                    rgba(0,0,0,0.58)
+                    rgba(0,0,0,0.5),
+                    rgba(0,0,0,0.7)
                 ),
                 url("background.PNG") center center / cover no-repeat;
-
             transition:
                 opacity 1.4s cubic-bezier(0.77,0,0.175,1),
                 transform 1.4s cubic-bezier(0.77,0,0.175,1);
@@ -130,13 +129,10 @@
             content: "";
             position: absolute;
             inset: 20px;
-
             border: 1px solid rgba(226,232,240,0.18);
-
             box-shadow:
                 inset 0 0 50px rgba(0,0,0,0.4),
                 0 0 50px rgba(0,0,0,0.4);
-
             pointer-events: none;
         }
 
@@ -144,13 +140,10 @@
             position: absolute;
             top: 42%;
             left: 50%;
-
             width: 280px;
             height: 280px;
-
             transform: translate(-50%,-50%);
             border-radius: 50%;
-
             background:
                 radial-gradient(
                     circle,
@@ -158,7 +151,6 @@
                     rgba(226,232,240,0.05) 35%,
                     transparent 72%
                 );
-
             animation: pulse-splash 4s ease-in-out infinite alternate;
             pointer-events: none;
         }
@@ -166,17 +158,13 @@
         .diamond-icon {
             position: relative;
             z-index: 10;
-
             font-size: 3.5rem;
             color: var(--platinum-color);
-
             text-shadow:
                 0 0 10px rgba(255,255,255,0.5),
                 0 0 25px rgba(226,232,240,0.8),
                 0 0 50px rgba(226,232,240,0.25);
-
             animation: float-diamond 4s ease-in-out infinite;
-
             transition:
                 transform 0.6s ease,
                 filter 0.6s ease;
@@ -185,31 +173,23 @@
         .splash-title {
             position: relative;
             z-index: 10;
-
             margin-top: 45px;
             margin-bottom: 5px;
-
             font-family: 'Amiri', serif;
             font-size: clamp(2.7rem, 10vw, 4rem);
             font-weight: 700;
-
             color: #ffffff;
-
             text-shadow:
-                0 0 15px rgba(255,255,255,0.7),
-                0 0 35px rgba(255,255,255,0.35);
-
+                0 0 15px rgba(255,255,255,0.8),
+                0 0 35px rgba(0,0,0,0.8);
             white-space: nowrap;
         }
 
         .splash-subtitle {
             position: relative;
             z-index: 10;
-
             margin-top: 8px;
-
-            color: rgba(226,232,240,0.8);
-
+            color: rgba(226,232,240,0.9);
             font-family: 'Cairo', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.28em;
@@ -219,13 +199,10 @@
         .splash-hint {
             position: absolute;
             bottom: 35px;
-
-            color: rgba(226,232,240,0.62);
-
+            color: rgba(226,232,240,0.8);
             font-family: 'Cairo', sans-serif;
             font-size: 0.72rem;
             letter-spacing: 0.08em;
-
             animation: hintPulse 2.5s ease-in-out infinite;
         }
 
@@ -233,7 +210,6 @@
             position: fixed;
             inset: 0;
             z-index: 10000;
-
             background:
                 radial-gradient(
                     circle at center,
@@ -241,10 +217,8 @@
                     rgba(255,255,255,0.55) 35%,
                     rgba(255,255,255,0) 75%
                 );
-
             opacity: 0;
             pointer-events: none;
-
             transition: opacity 0.8s ease-out;
         }
 
@@ -261,22 +235,16 @@
         #main-invite {
             position: relative;
             z-index: 10;
-
             width: 100%;
             max-width: 500px;
-
             min-height: 100vh;
-
             margin: 0 auto;
             padding: 65px 18px 90px;
-
             display: flex;
             flex-direction: column;
             align-items: center;
-
             opacity: 0;
             transform: translateY(30px);
-
             transition:
                 opacity 1.8s cubic-bezier(0.25,1,0.5,1),
                 transform 1.8s cubic-bezier(0.25,1,0.5,1);
@@ -291,37 +259,9 @@
            TYPOGRAPHY
         ========================================================= */
 
-        .font-amiri {
-            font-family: 'Amiri', serif;
-        }
-
-        .font-playfair {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .font-cairo {
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .text-glow {
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.18);
-        }
-
-        .text-platinum-accent {
-            color: var(--platinum-color);
-
-            text-shadow:
-                0 0 10px rgba(226,232,240,0.28);
-        }
-
-        .text-radiant-glow {
-            color: #ffffff;
-
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.75),
-                0 0 28px rgba(255,255,255,0.35);
-        }
+        .font-amiri { font-family: 'Amiri', serif; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-cairo { font-family: 'Cairo', sans-serif; }
 
         /* =========================================================
            TOP SECTION
@@ -333,51 +273,37 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-
             margin-bottom: 34px;
         }
 
         .bismillah {
             margin: 0 0 20px;
-
             font-family: 'Amiri', serif;
             font-size: clamp(1.85rem, 7vw, 2.6rem);
             font-weight: 700;
-
             color: var(--platinum-color);
-
             line-height: 1.8;
-
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.28);
+            text-shadow: 0 0 15px rgba(0,0,0,0.6), 0 0 12px rgba(255,255,255,0.28);
         }
 
         .quran-verse {
             width: 100%;
-
             margin: 0;
             padding: 0 2px;
-
             font-family: 'Amiri', serif;
             font-size: clamp(1.25rem, 5.5vw, 1.55rem);
-
-            color: rgba(226,232,240,0.94);
-
+            color: #ffffff;
             line-height: 2.25;
-
             text-align: center;
-
-            text-shadow:
-                0 0 10px rgba(255,255,255,0.18);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.2);
         }
 
         .verse-reference {
             margin-top: 12px;
-
             font-family: 'Cairo', sans-serif;
             font-size: 0.82rem;
-
-            color: rgba(226,232,240,0.68);
+            color: rgba(226,232,240,0.8);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
@@ -386,44 +312,27 @@
 
         .lux-divider {
             width: 72%;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             margin: 12px auto 32px;
         }
 
         .lux-line {
             flex: 1;
             height: 1px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    transparent,
-                    rgba(226,232,240,0.62)
-                );
+            background: linear-gradient(to right, transparent, rgba(226,232,240,0.62));
         }
 
         .lux-line.reverse {
-            background:
-                linear-gradient(
-                    to left,
-                    transparent,
-                    rgba(226,232,240,0.62)
-                );
+            background: linear-gradient(to left, transparent, rgba(226,232,240,0.62));
         }
 
         .lux-symbol {
             margin: 0 13px;
-
             color: rgba(226,232,240,0.85);
-
             font-size: 17px;
-
-            text-shadow:
-                0 0 10px rgba(255,255,255,0.3);
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
         /* =========================================================
@@ -432,37 +341,28 @@
 
         .invitation-text {
             width: 100%;
-
             display: flex;
             flex-direction: column;
             align-items: center;
-
             text-align: center;
-
             margin-bottom: 30px;
         }
 
         .invitation-title {
             margin: 0 0 9px;
-
             font-family: 'Amiri', serif;
             font-size: 1.75rem;
-
             color: var(--platinum-color);
-
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.22);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
         }
 
         .invitation-subtitle {
             margin: 0;
-
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
-
-            color: rgba(226,232,240,0.82);
-
+            color: rgba(226,232,240,0.9);
             line-height: 1.8;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
@@ -471,67 +371,48 @@
 
         .name-container {
             position: relative;
-
             width: 100%;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             margin: 8px 0 18px;
-
             direction: ltr;
-
             white-space: nowrap;
         }
 
         .main-name {
             display: inline-block;
-
             font-family: 'Amiri', serif;
             font-size: clamp(3.8rem, 15vw, 5.2rem);
             line-height: 1.15;
-
             color: #ffffff;
-
             text-shadow:
                 0 0 12px rgba(255,255,255,0.75),
-                0 0 30px rgba(255,255,255,0.3);
-
+                0 0 30px rgba(255,255,255,0.3),
+                0 4px 10px rgba(0,0,0,0.5);
             animation: nameGlow 4s ease-in-out infinite alternate;
         }
 
         .name-ampersand {
             display: inline-block;
-
             margin: 0 13px;
-
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-
-            color: rgba(226,232,240,0.72);
-
-            text-shadow: none;
+            font-size: 2.2rem;
+            color: rgba(226,232,240,0.85);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        .name-groom {
-            animation-delay: 1.5s;
-        }
+        .name-groom { animation-delay: 1.5s; }
 
         .gold-dust {
             position: absolute;
-
             width: 2.5px;
             height: 2.5px;
-
             border-radius: 50%;
-
             background: var(--gold);
-
             box-shadow:
                 0 0 6px #f8e9c0,
                 0 0 12px var(--gold);
-
             pointer-events: none;
             z-index: 20;
         }
@@ -542,22 +423,15 @@
 
         .event-date {
             margin: 0 0 25px;
-
             font-family: 'Playfair Display', serif;
-
             font-size: clamp(1.15rem, 5vw, 1.5rem);
             font-weight: 600;
-
             letter-spacing: 0.42em;
-
             color: #ffffff;
-
             text-align: center;
-
             text-shadow:
-                0 0 12px rgba(255,255,255,0.6),
-                0 0 25px rgba(255,255,255,0.25);
-
+                0 2px 5px rgba(0,0,0,0.8),
+                0 0 12px rgba(255,255,255,0.6);
             direction: ltr;
         }
 
@@ -567,84 +441,52 @@
 
         .ring-showcase {
             width: 100%;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             margin: 0 0 20px;
-
             perspective: 1200px;
-
             overflow: visible;
         }
 
         .ring-protection {
             position: relative;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             width: 180px;
             height: 150px;
-
             overflow: visible;
-
             -webkit-user-select: none;
             user-select: none;
         }
 
         .the-ring {
             display: block;
-
             width: 145px;
             height: auto;
-
             pointer-events: none;
-
             -webkit-user-drag: none;
             user-drag: none;
-
             -webkit-touch-callout: none;
-
             user-select: none;
-
             transform-style: preserve-3d;
-
-            filter:
-                drop-shadow(0 0 8px rgba(255,255,255,0.28));
-
-            animation:
-                slowRingRotation 28s ease-in-out infinite;
-
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.28));
+            animation: slowRingRotation 28s ease-in-out infinite;
             will-change: transform, filter;
         }
 
         .ring-reflection {
             position: absolute;
-
             bottom: 2px;
             left: 50%;
-
             width: 105px;
             height: 18px;
-
             transform: translateX(-50%);
-
             border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    ellipse,
-                    rgba(255,255,255,0.22),
-                    transparent 70%
-                );
-
+            background: radial-gradient(ellipse, rgba(255,255,255,0.22), transparent 70%);
             filter: blur(5px);
-
             opacity: 0.6;
-
             pointer-events: none;
         }
 
@@ -654,21 +496,13 @@
 
         .romantic-quote {
             width: 100%;
-
             margin: 5px 0 35px;
-
             font-family: 'Amiri', serif;
-
             font-size: clamp(1.45rem, 6vw, 1.9rem);
-
             color: var(--platinum-color);
-
             text-align: center;
-
             line-height: 2.1;
-
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.22);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 12px rgba(255,255,255,0.22);
         }
 
         /* =========================================================
@@ -677,65 +511,40 @@
 
         .countdown-glass {
             width: 96%;
-
             margin: 0 0 42px;
-
             padding: 22px 14px 20px;
-
             border-radius: 24px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.07),
-                    rgba(0,0,0,0.42)
-                );
-
-            border:
-                1px solid rgba(226,232,240,0.17);
-
-            border-top-color:
-                rgba(255,255,255,0.3);
-
+            background: linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            border: 1px solid rgba(226,232,240,0.17);
+            border-top-color: rgba(255,255,255,0.3);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-
             box-shadow:
-                0 22px 45px rgba(0,0,0,0.55),
+                0 22px 45px rgba(0,0,0,0.7),
                 inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
         .countdown-title {
             margin: 0 0 17px;
-
             text-align: center;
-
             font-family: 'Amiri', serif;
             font-size: 1.35rem;
-
             color: var(--platinum-color);
-
-            text-shadow:
-                0 0 10px rgba(255,255,255,0.2);
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
         .countdown-box {
             width: 100%;
-
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-
             gap: 5px;
-
             direction: ltr;
         }
 
         .time-block {
             flex: 1;
-
             min-width: 0;
-
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -743,42 +552,26 @@
 
         .time-val {
             width: 88%;
-
             padding: 9px 2px;
-
             border-radius: 12px;
-
-            background: rgba(0,0,0,0.48);
-
-            border:
-                1px solid rgba(255,255,255,0.09);
-
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.09);
             color: #ffffff;
-
             font-family: 'Playfair Display', serif;
             font-size: 1.55rem;
             font-weight: 600;
-
             text-align: center;
-
-            text-shadow:
-                0 0 15px rgba(255,255,255,0.65);
-
-            box-shadow:
-                inset 0 0 12px rgba(255,255,255,0.025);
-
-            animation:
-                pulse-radiant 2.8s ease-in-out infinite alternate;
+            text-shadow: 0 0 15px rgba(255,255,255,0.65);
+            box-shadow: inset 0 0 12px rgba(255,255,255,0.025);
+            animation: pulse-radiant 2.8s ease-in-out infinite alternate;
         }
 
         .time-label {
             margin-top: 7px;
-
             font-family: 'Cairo', sans-serif;
             font-size: 0.7rem;
             font-weight: 600;
-
-            color: var(--text-muted);
+            color: #cbd5e1;
         }
 
         /* =========================================================
@@ -787,109 +580,71 @@
 
         .details-wrapper {
             width: 100%;
-
             display: flex;
             flex-direction: column;
             align-items: center;
-
             margin-bottom: 48px;
         }
 
         .details-grid {
             width: 100%;
             max-width: 460px;
-
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-
             direction: rtl;
-
             text-align: center;
         }
 
         .detail-col {
             position: relative;
-
             display: flex;
             flex-direction: column;
             align-items: center;
-
             padding: 0 7px;
         }
 
         .detail-col:not(:last-child)::after {
             content: "";
-
             position: absolute;
-
             top: 12%;
             bottom: 10%;
-
             left: 0;
-
             width: 1px;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    transparent,
-                    rgba(226,232,240,0.35),
-                    transparent
-                );
+            background: linear-gradient(to bottom, transparent, rgba(226,232,240,0.35), transparent);
         }
 
         .icon-circle {
             width: 52px;
             height: 52px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             margin-bottom: 14px;
-
             border-radius: 50%;
-
-            border:
-                1px solid rgba(226,232,240,0.38);
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255,255,255,0.08),
-                    rgba(0,0,0,0.08) 70%,
-                    transparent
-                );
-
+            border: 1px solid rgba(226,232,240,0.38);
+            background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(0,0,0,0.4) 70%, transparent);
             color: var(--platinum-color);
-
             font-size: 1.25rem;
-
-            box-shadow:
-                0 0 18px rgba(226,232,240,0.08);
+            box-shadow: 0 0 18px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
         }
 
         .detail-title {
             margin-bottom: 5px;
-
             font-family: 'Cairo', sans-serif;
-
             font-size: 1.05rem;
             font-weight: 600;
-
             color: var(--platinum-color);
-
             white-space: nowrap;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .detail-subtitle {
             font-family: 'Cairo', sans-serif;
-
             font-size: 0.78rem;
-
-            color: rgba(154,163,178,0.95);
-
+            color: #cbd5e1;
             line-height: 1.75;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
@@ -899,57 +654,30 @@
         .map-btn {
             width: auto;
             max-width: 92%;
-
             display: inline-flex;
             align-items: center;
             justify-content: center;
-
             gap: 10px;
-
             margin-top: 30px;
-
             padding: 13px 30px;
-
             border-radius: 50px;
-
-            border:
-                1px solid rgba(226,232,240,0.38);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.08),
-                    rgba(0,0,0,0.22)
-                );
-
+            border: 1px solid rgba(226,232,240,0.38);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.5));
             color: var(--platinum-color);
-
             text-decoration: none;
-
             font-family: 'Cairo', sans-serif;
             font-size: 0.92rem;
             font-weight: 600;
-
-            box-shadow:
-                0 10px 25px rgba(0,0,0,0.42);
-
-            transition:
-                transform 0.35s ease,
-                background 0.35s ease,
-                box-shadow 0.35s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
         }
 
-        .map-btn:active {
-            transform: scale(0.97);
-        }
+        .map-btn:active { transform: scale(0.97); }
 
         .map-btn:hover {
-            background:
-                rgba(226,232,240,0.12);
-
-            box-shadow:
-                0 14px 30px rgba(0,0,0,0.55),
-                0 0 18px rgba(226,232,240,0.15);
+            background: rgba(226,232,240,0.15);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.7), 0 0 18px rgba(226,232,240,0.15);
         }
 
         /* =========================================================
@@ -958,127 +686,76 @@
 
         .lower-divider {
             width: 70%;
-
             display: flex;
             align-items: center;
-
             margin: 0 auto 28px;
         }
 
         .lower-line {
             flex: 1;
             height: 1px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    transparent,
-                    rgba(226,232,240,0.4)
-                );
+            background: linear-gradient(to right, transparent, rgba(226,232,240,0.4));
         }
 
         .lower-line.reverse {
-            background:
-                linear-gradient(
-                    to left,
-                    transparent,
-                    rgba(226,232,240,0.4)
-                );
+            background: linear-gradient(to left, transparent, rgba(226,232,240,0.4));
         }
 
         .heart {
             margin: 0 12px;
-
             color: var(--ruby-red);
-
             font-size: 15px;
-
-            text-shadow:
-                0 0 12px rgba(225,29,72,0.7);
-
-            animation:
-                heartPulse 2.2s ease-in-out infinite;
+            text-shadow: 0 0 12px rgba(225,29,72,0.7);
+            animation: heartPulse 2.2s ease-in-out infinite;
         }
 
         /* =========================================================
-           PRAYER
+           PRAYER & CLOSING
         ========================================================= */
 
         .prayer {
             width: 100%;
-
             margin: 0 0 38px;
-
             text-align: center;
-
             font-family: 'Amiri', serif;
-
             font-size: clamp(1.4rem, 6vw, 1.75rem);
             font-weight: 700;
-
             color: var(--platinum-color);
-
             line-height: 2;
-
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.22);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8), 0 0 12px rgba(255,255,255,0.22);
         }
-
-        /* =========================================================
-           CLOSING
-        ========================================================= */
 
         .closing-text {
             margin: 0 0 8px;
-
             font-family: 'Cairo', sans-serif;
-
             font-size: 0.9rem;
-
-            color: rgba(226,232,240,0.72);
-
+            color: rgba(226,232,240,0.9);
             text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         .closing-names {
             margin: 0 0 30px;
-
             direction: ltr;
-
             font-family: 'Amiri', serif;
-
             font-size: clamp(2rem, 9vw, 2.8rem);
-
             color: #ffffff;
-
-            text-shadow:
-                0 0 15px rgba(255,255,255,0.55);
+            text-shadow: 0 3px 6px rgba(0,0,0,0.6), 0 0 15px rgba(255,255,255,0.55);
         }
 
         .closing-names .amp {
             margin: 0 10px;
-
             font-family: 'Playfair Display', serif;
-
-            font-size: 1.35rem;
-
-            color: rgba(226,232,240,0.65);
-
-            text-shadow: none;
+            font-size: 1.5rem;
+            color: rgba(226,232,240,0.85);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-
-        /* =========================================================
-           PARTICLES
-        ========================================================= */
 
         #particles-js {
             position: fixed;
             inset: 0;
-
             z-index: 1;
-
             pointer-events: none;
-
             opacity: 0.65;
         }
 
@@ -1087,1001 +764,369 @@
         ========================================================= */
 
         @keyframes float-diamond {
-            0%,100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-13px);
-            }
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-13px); }
         }
 
         @keyframes pulse-splash {
-            from {
-                transform: translate(-50%,-50%) scale(0.95);
-                opacity: 0.45;
-            }
-
-            to {
-                transform: translate(-50%,-50%) scale(1.3);
-                opacity: 1;
-            }
+            from { transform: translate(-50%,-50%) scale(0.95); opacity: 0.45; }
+            to { transform: translate(-50%,-50%) scale(1.3); opacity: 1; }
         }
 
         @keyframes hintPulse {
-            0%,100% {
-                opacity: 0.45;
-            }
-
-            50% {
-                opacity: 0.9;
-            }
+            0%,100% { opacity: 0.45; }
+            50% { opacity: 0.9; }
         }
 
         @keyframes nameGlow {
-            0% {
-                text-shadow:
-                    0 0 10px rgba(255,255,255,0.6),
-                    0 0 25px rgba(255,255,255,0.22);
-            }
-
-            100% {
-                text-shadow:
-                    0 0 20px rgba(255,255,255,0.95),
-                    0 0 42px rgba(255,255,255,0.4);
-            }
+            0% { text-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 25px rgba(255,255,255,0.22), 0 4px 10px rgba(0,0,0,0.5); }
+            100% { text-shadow: 0 0 20px rgba(255,255,255,0.95), 0 0 42px rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.5); }
         }
 
         @keyframes slowRingRotation {
-            0% {
-                transform:
-                    rotateY(0deg)
-                    rotateZ(0deg)
-                    translateY(0);
-
-                filter:
-                    drop-shadow(0 0 7px rgba(255,255,255,0.25));
-            }
-
-            25% {
-                transform:
-                    rotateY(90deg)
-                    rotateZ(0.5deg)
-                    translateY(-2px);
-
-                filter:
-                    drop-shadow(0 0 17px rgba(255,255,255,0.45));
-            }
-
-            50% {
-                transform:
-                    rotateY(180deg)
-                    rotateZ(0deg)
-                    translateY(0);
-
-                filter:
-                    drop-shadow(0 0 7px rgba(255,255,255,0.25));
-            }
-
-            75% {
-                transform:
-                    rotateY(270deg)
-                    rotateZ(-0.5deg)
-                    translateY(-2px);
-
-                filter:
-                    drop-shadow(0 0 17px rgba(255,255,255,0.45));
-            }
-
-            100% {
-                transform:
-                    rotateY(360deg)
-                    rotateZ(0deg)
-                    translateY(0);
-
-                filter:
-                    drop-shadow(0 0 7px rgba(255,255,255,0.25));
-            }
+            0% { transform: rotateY(0deg) rotateZ(0deg) translateY(0); filter: drop-shadow(0 0 7px rgba(255,255,255,0.25)); }
+            25% { transform: rotateY(90deg) rotateZ(0.5deg) translateY(-2px); filter: drop-shadow(0 0 17px rgba(255,255,255,0.45)); }
+            50% { transform: rotateY(180deg) rotateZ(0deg) translateY(0); filter: drop-shadow(0 0 7px rgba(255,255,255,0.25)); }
+            75% { transform: rotateY(270deg) rotateZ(-0.5deg) translateY(-2px); filter: drop-shadow(0 0 17px rgba(255,255,255,0.45)); }
+            100% { transform: rotateY(360deg) rotateZ(0deg) translateY(0); filter: drop-shadow(0 0 7px rgba(255,255,255,0.25)); }
         }
 
         @keyframes pulse-radiant {
-            from {
-                opacity: 0.82;
-
-                text-shadow:
-                    0 0 10px rgba(255,255,255,0.55);
-            }
-
-            to {
-                opacity: 1;
-
-                text-shadow:
-                    0 0 22px rgba(255,255,255,0.9),
-                    0 0 40px rgba(255,255,255,0.3);
-            }
+            from { opacity: 0.82; text-shadow: 0 0 10px rgba(255,255,255,0.55); }
+            to { opacity: 1; text-shadow: 0 0 22px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.3); }
         }
 
         @keyframes heartPulse {
-            0%,100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.18);
-            }
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
         }
 
         /* =========================================================
-           MOBILE
+           MOBILE & REDUCED MOTION
         ========================================================= */
 
         @media (max-width: 380px) {
-
-            #main-invite {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-
-            .bismillah {
-                font-size: 1.65rem;
-            }
-
-            .quran-verse {
-                font-size: 1.13rem;
-            }
-
-            .main-name {
-                font-size: 3.45rem;
-            }
-
-            .name-ampersand {
-                margin: 0 8px;
-                font-size: 1.7rem;
-            }
-
-            .icon-circle {
-                width: 46px;
-                height: 46px;
-            }
-
-            .detail-title {
-                font-size: 0.92rem;
-            }
-
-            .detail-subtitle {
-                font-size: 0.7rem;
-            }
-
-            .time-val {
-                font-size: 1.35rem;
-            }
+            #main-invite { padding-left: 12px; padding-right: 12px; }
+            .bismillah { font-size: 1.65rem; }
+            .quran-verse { font-size: 1.13rem; }
+            .main-name { font-size: 3.45rem; }
+            .name-ampersand { margin: 0 8px; font-size: 1.7rem; }
+            .icon-circle { width: 46px; height: 46px; }
+            .detail-title { font-size: 0.92rem; }
+            .detail-subtitle { font-size: 0.7rem; }
+            .time-val { font-size: 1.35rem; }
         }
 
-        /* =========================================================
-           REDUCED MOTION
-        ========================================================= */
-
         @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 scroll-behavior: auto !important;
             }
-
-            #main-invite {
-                transition: none;
-            }
-
-            #splash {
-                transition: opacity 0.4s ease;
-            }
+            #main-invite { transition: none; }
+            #splash { transition: opacity 0.4s ease; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- =========================================================
-         BACKGROUND
-    ========================================================= -->
-
+    <!-- BACKGROUND & OVERLAYS -->
     <div class="background-layer"></div>
     <div class="background-overlay"></div>
     <div class="background-vignette"></div>
 
-    <!-- =========================================================
-         AUDIO
-    ========================================================= -->
-
+    <!-- AUDIO -->
     <audio id="bg-audio" loop preload="auto">
-        <source
-            src="https://ia800504.us.archive.org/33/items/canon-in-d_202208/Canon%20in%20D.mp3"
-            type="audio/mpeg">
+        <source src="https://ia800504.us.archive.org/33/items/canon-in-d_202208/Canon%20in%20D.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- =========================================================
-         FLASH
-    ========================================================= -->
-
+    <!-- EFFECTS -->
     <div id="flash-white"></div>
-
-    <!-- =========================================================
-         PARTICLES
-    ========================================================= -->
-
     <div id="particles-js"></div>
 
-    <!-- =========================================================
-         SPLASH SCREEN
-    ========================================================= -->
-
+    <!-- SPLASH SCREEN -->
     <section id="splash" onclick="unlockInvitation()">
-
         <div class="splash-glow"></div>
-
-        <p class="splash-subtitle">
-            Wedding Invitation
-        </p>
-
+        <p class="splash-subtitle">Wedding Invitation</p>
         <div class="diamond-icon" id="trigger-icon">
             <i class="fa-regular fa-gem"></i>
         </div>
-
-        <div class="splash-title">
-            ملاك &amp; محمد
-        </div>
-
-        <p class="splash-hint">
-            المس الألماسة لتبدأ الحكاية
-        </p>
-
+        <div class="splash-title">ملاك | محمد</div>
+        <p class="splash-hint">المس الألماسة لتبدأ الحكاية</p>
     </section>
 
-    <!-- =========================================================
-         MAIN INVITATION
-    ========================================================= -->
-
+    <!-- MAIN INVITATION -->
     <main id="main-invite">
 
-        <!-- =====================================================
-             BISMILLAH + VERSE
-        ===================================================== -->
-
+        <!-- BISMILLAH + VERSE -->
         <section class="intro-section">
-
-            <h1 class="bismillah">
-                بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
-            </h1>
-
+            <h1 class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h1>
             <p class="quran-verse">
                 { وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا<br>
                 لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً }
             </p>
-
-            <div class="verse-reference">
-                (الروم - 21)
-            </div>
-
+            <div class="verse-reference">(الروم - 21)</div>
         </section>
 
-        <!-- =====================================================
-             DIVIDER
-        ===================================================== -->
-
+        <!-- DIVIDER -->
         <div class="lux-divider">
-
             <div class="lux-line"></div>
-
-            <div class="lux-symbol">
-                ~ ♡ ~
-            </div>
-
+            <div class="lux-symbol">~ ♡ ~</div>
             <div class="lux-line reverse"></div>
-
         </div>
 
-        <!-- =====================================================
-             INVITATION TEXT
-        ===================================================== -->
-
+        <!-- INVITATION TEXT -->
         <section class="invitation-text">
-
-            <p class="invitation-title">
-                بكل حب وامتنان
-            </p>
-
-            <p class="invitation-subtitle">
-                ندعوكم لمشاركتنا فرحتنا بمناسبة خطوبتنا
-            </p>
-
+            <p class="invitation-title">بكل حب وامتنان</p>
+            <p class="invitation-subtitle">ندعوكم لمشاركتنا فرحتنا بمناسبة خطوبتنا</p>
         </section>
 
-        <!-- =====================================================
-             NAMES
-        ===================================================== -->
-
-        <div
-            id="names-box"
-            class="name-container"
-            dir="ltr">
-
-            <span class="main-name name-bride">
-                ملاك
-            </span>
-
-            <span class="name-ampersand">
-                &amp;
-            </span>
-
-            <span class="main-name name-groom">
-                محمد
-            </span>
-
+        <!-- NAMES -->
+        <div id="names-box" class="name-container" dir="ltr">
+            <span class="main-name name-bride">ملاك</span>
+            <span class="name-ampersand">|</span>
+            <span class="main-name name-groom">محمد</span>
         </div>
 
-        <!-- =====================================================
-             DATE
-        ===================================================== -->
+        <!-- DATE -->
+        <div class="event-date">01 . 01 . 2028</div>
 
-        <div class="event-date">
-            01 . 01 . 2028
-        </div>
-
-        <!-- =====================================================
-             RING
-        ===================================================== -->
-
+        <!-- RING SHOWCASE -->
         <div class="ring-showcase">
-
             <div class="ring-protection">
-
-                <img
-                    src="ring.PNG"
-                    alt="Diamond Ring"
-                    class="the-ring"
-                    draggable="false"
-                    oncontextmenu="return false;"
-                    ondragstart="return false;"
-                    onselectstart="return false;"
-                >
-
+                <img src="ring.PNG" alt="Diamond Ring" class="the-ring" draggable="false" oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
                 <div class="ring-reflection"></div>
-
             </div>
-
         </div>
 
-        <!-- =====================================================
-             ROMANTIC QUOTE
-        ===================================================== -->
-
+        <!-- ROMANTIC QUOTE -->
         <p class="romantic-quote">
             من بين كل الوجوه كنت أنتِ<br>
             ومن بين كل الأقدار كنت قدري
         </p>
 
-        <!-- =====================================================
-             COUNTDOWN
-        ===================================================== -->
-
+        <!-- COUNTDOWN -->
         <section class="countdown-glass">
-
-            <h2 class="countdown-title">
-                العد التنازلي لفرحتنا
-            </h2>
-
-            <div
-                class="countdown-box"
-                id="countdown-box">
-
+            <h2 class="countdown-title">العد التنازلي لفرحتنا</h2>
+            <div class="countdown-box" id="countdown-box">
                 <div class="time-block">
-
-                    <div
-                        class="time-val"
-                        id="days">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        يوم
-                    </div>
-
+                    <div class="time-val" id="days">00</div>
+                    <div class="time-label">يوم</div>
                 </div>
-
                 <div class="time-block">
-
-                    <div
-                        class="time-val"
-                        id="hours">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        ساعة
-                    </div>
-
+                    <div class="time-val" id="hours">00</div>
+                    <div class="time-label">ساعة</div>
                 </div>
-
                 <div class="time-block">
-
-                    <div
-                        class="time-val"
-                        id="minutes">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        دقيقة
-                    </div>
-
+                    <div class="time-val" id="minutes">00</div>
+                    <div class="time-label">دقيقة</div>
                 </div>
-
                 <div class="time-block">
-
-                    <div
-                        class="time-val"
-                        id="seconds">
-                        00
-                    </div>
-
-                    <div class="time-label">
-                        ثانية
-                    </div>
-
+                    <div class="time-val" id="seconds">00</div>
+                    <div class="time-label">ثانية</div>
                 </div>
-
             </div>
-
         </section>
 
-        <!-- =====================================================
-             EVENT DETAILS
-        ===================================================== -->
-
+        <!-- EVENT DETAILS -->
         <section class="details-wrapper">
-
             <div class="details-grid">
-
-                <!-- Saturday -->
                 <div class="detail-col">
-
-                    <div class="icon-circle">
-                        <i class="fa-regular fa-calendar-days"></i>
-                    </div>
-
-                    <div class="detail-title">
-                        السبت
-                    </div>
-
-                    <div class="detail-subtitle">
-                        01 يناير 2028
-                    </div>
-
+                    <div class="icon-circle"><i class="fa-regular fa-calendar-days"></i></div>
+                    <div class="detail-title">السبت</div>
+                    <div class="detail-subtitle">01 يناير 2028</div>
                 </div>
-
-                <!-- Time -->
                 <div class="detail-col">
-
-                    <div class="icon-circle">
-                        <i class="fa-regular fa-clock"></i>
-                    </div>
-
-                    <div class="detail-title">
-                        الساعة
-                    </div>
-
-                    <div class="detail-subtitle">
-                        07:30 مساءً
-                    </div>
-
+                    <div class="icon-circle"><i class="fa-regular fa-clock"></i></div>
+                    <div class="detail-title">الساعة</div>
+                    <div class="detail-subtitle">07:30 مساءً</div>
                 </div>
-
-                <!-- Location -->
                 <div class="detail-col">
-
-                    <div class="icon-circle">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
-
-                    <div class="detail-title">
-                        مزرعة اثينا
-                    </div>
-
-                    <div class="detail-subtitle">
-                        بابل - الحلة
-                    </div>
-
+                    <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="detail-title">مزرعة اثينا</div>
+                    <div class="detail-subtitle">بابل - الحلة</div>
                 </div>
-
             </div>
-
-            <a
-                href="https://maps.app.goo.gl/Sk3yoRBhzgz2TJX98?g_st=ic"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="map-btn">
-
+            <a href="https://maps.app.goo.gl/Sk3yoRBhzgz2TJX98?g_st=ic" target="_blank" rel="noopener noreferrer" class="map-btn">
                 <i class="fa-solid fa-map-location-dot"></i>
-
-                <span>
-                    عرض الموقع على الخريطة
-                </span>
-
+                <span>عرض الموقع على الخريطة</span>
             </a>
-
         </section>
 
-        <!-- =====================================================
-             LOWER DIVIDER
-        ===================================================== -->
-
+        <!-- LOWER DIVIDER -->
         <div class="lower-divider">
-
             <div class="lower-line"></div>
-
-            <div class="heart">
-                <i class="fa-solid fa-heart"></i>
-            </div>
-
+            <div class="heart"><i class="fa-solid fa-heart"></i></div>
             <div class="lower-line reverse"></div>
-
         </div>
 
-        <!-- =====================================================
-             PRAYER
-        ===================================================== -->
-
-        <p class="prayer">
-            اللهم بارك لهما وبارك عليهما<br>
-            واجمع بينهما في خير
-        </p>
-
-        <!-- =====================================================
-             CLOSING
-        ===================================================== -->
-
-        <p class="closing-text">
-            بحضوركم تكتمل فرحتنا
-        </p>
-
+        <!-- PRAYER & CLOSING -->
+        <p class="prayer">اللهم بارك لهما وبارك عليهما<br>واجمع بينهما في خير</p>
+        <p class="closing-text">بحضوركم تكتمل فرحتنا</p>
         <div class="closing-names">
-
-            <span>
-                ملاك
-            </span>
-
-            <span class="amp">
-                &amp;
-            </span>
-
-            <span>
-                محمد
-            </span>
-
+            <span>ملاك</span>
+            <span class="amp">|</span>
+            <span>محمد</span>
         </div>
 
     </main>
 
-    <!-- =========================================================
-         PARTICLES JS
-    ========================================================= -->
-
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
     <script>
-
         /* =========================================================
-           SPLASH
+           SPLASH & AUDIO LOGIC
         ========================================================= */
-
         let isOpened = false;
 
         function unlockInvitation() {
-
             if (isOpened) return;
-
             isOpened = true;
 
-            const splash =
-                document.getElementById("splash");
-
-            const flash =
-                document.getElementById("flash-white");
-
-            const audio =
-                document.getElementById("bg-audio");
-
-            const icon =
-                document.getElementById("trigger-icon");
+            const splash = document.getElementById("splash");
+            const flash = document.getElementById("flash-white");
+            const audio = document.getElementById("bg-audio");
+            const icon = document.getElementById("trigger-icon");
 
             /* Diamond interaction */
-
             icon.style.transform = "scale(1.5)";
-
-            icon.style.filter =
-                "drop-shadow(0 0 40px #ffffff) brightness(1.5)";
+            icon.style.filter = "drop-shadow(0 0 40px #ffffff) brightness(1.5)";
 
             /* Music */
-
             const playPromise = audio.play();
-
             if (playPromise !== undefined) {
-
                 playPromise.catch(() => {
-
-                    document.body.addEventListener(
-                        "touchstart",
-                        () => {
-                            audio.play().catch(() => {});
-                        },
-                        { once: true }
-                    );
-
+                    document.body.addEventListener("touchstart", () => {
+                        audio.play().catch(() => {});
+                    }, { once: true });
                 });
-
             }
 
             /* Cinematic transition */
-
             setTimeout(() => {
-
                 flash.style.opacity = "1";
-
                 setTimeout(() => {
-
                     document.body.classList.add("revealed");
-
                     splash.classList.add("hidden-splash");
-
                     flash.style.opacity = "0";
-
                     setTimeout(initParticles, 350);
-
                     setTimeout(startNameDust, 1200);
-
                     setTimeout(() => {
-
                         splash.style.display = "none";
-
                     }, 1500);
-
                 }, 420);
-
             }, 300);
-
         }
-
 
         /* =========================================================
            PARTICLES
         ========================================================= */
-
         function initParticles() {
-
             if (typeof particlesJS === "undefined") return;
-
             particlesJS("particles-js", {
-
                 particles: {
-
-                    number: {
-                        value: 45,
-                        density: {
-                            enable: true,
-                            value_area: 900
-                        }
-                    },
-
-                    color: {
-                        value: "#e2e8f0"
-                    },
-
-                    shape: {
-                        type: "circle"
-                    },
-
-                    opacity: {
-                        value: 0.28,
-                        random: true
-                    },
-
-                    size: {
-                        value: 1.7,
-                        random: true
-                    },
-
-                    line_linked: {
-                        enable: false
-                    },
-
-                    move: {
-
-                        enable: true,
-
-                        speed: 0.32,
-
-                        direction: "top",
-
-                        random: true,
-
-                        straight: false,
-
-                        out_mode: "out",
-
-                        bounce: false
-
-                    }
-
+                    number: { value: 45, density: { enable: true, value_area: 900 } },
+                    color: { value: "#e2e8f0" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.28, random: true },
+                    size: { value: 1.7, random: true },
+                    line_linked: { enable: false },
+                    move: { enable: true, speed: 0.32, direction: "top", random: true, straight: false, out_mode: "out", bounce: false }
                 },
-
                 interactivity: {
-
                     detect_on: "canvas",
-
-                    events: {
-
-                        onhover: {
-                            enable: false
-                        },
-
-                        onclick: {
-                            enable: false
-                        },
-
-                        resize: true
-
-                    }
-
+                    events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
                 },
-
                 retina_detect: true
-
             });
-
         }
-
 
         /* =========================================================
            GOLD DUST AROUND NAMES
         ========================================================= */
-
         function startNameDust() {
-
-            const box =
-                document.getElementById("names-box");
-
+            const box = document.getElementById("names-box");
             if (!box) return;
 
             setInterval(() => {
-
-                const dust =
-                    document.createElement("span");
-
+                const dust = document.createElement("span");
                 dust.className = "gold-dust";
-
-                dust.style.left =
-                    (15 + Math.random() * 70) + "%";
-
-                dust.style.top =
-                    (30 + Math.random() * 40) + "%";
-
+                dust.style.left = (15 + Math.random() * 70) + "%";
+                dust.style.top = (30 + Math.random() * 40) + "%";
                 box.appendChild(dust);
 
-                const animation =
-                    dust.animate(
+                const animation = dust.animate([
+                    { transform: "translate(0,0) scale(1)", opacity: 1 },
+                    { transform: `translate(${(Math.random() - 0.5) * 45}px,-${30 + Math.random() * 55}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 2000 + Math.random() * 1500,
+                    easing: "ease-out"
+                });
 
-                        [
-                            {
-                                transform:
-                                    "translate(0,0) scale(1)",
-                                opacity: 1
-                            },
-
-                            {
-                                transform:
-                                    `translate(${(Math.random() - 0.5) * 45}px,-${30 + Math.random() * 55}px) scale(0)`,
-                                opacity: 0
-                            }
-                        ],
-
-                        {
-                            duration:
-                                2000 + Math.random() * 1500,
-
-                            easing:
-                                "ease-out"
-                        }
-
-                    );
-
-                animation.onfinish = () => {
-                    dust.remove();
-                };
-
+                animation.onfinish = () => { dust.remove(); };
             }, 330);
-
         }
-
 
         /* =========================================================
            COUNTDOWN
         ========================================================= */
-
         function updateCountdown() {
-
-            const targetDate =
-                new Date("2028-01-01T19:30:00").getTime();
-
-            const now =
-                new Date().getTime();
-
-            let distance =
-                targetDate - now;
+            const targetDate = new Date("2028-01-01T19:30:00").getTime();
+            const now = new Date().getTime();
+            let distance = targetDate - now;
 
             if (distance <= 0) {
-
-                const box =
-                    document.getElementById("countdown-box");
-
+                const box = document.getElementById("countdown-box");
                 box.innerHTML = `
-                    <div
-                        style="
-                            width:100%;
-                            text-align:center;
-                            font-family:'Amiri',serif;
-                            font-size:1.45rem;
-                            color:#e2e8f0;
-                            padding:12px 0;
-                        ">
+                    <div style="width:100%; text-align:center; font-family:'Amiri',serif; font-size:1.45rem; color:#e2e8f0; padding:12px 0;">
                         أهلاً بكم في يوم فرحتنا
                     </div>
                 `;
-
                 return;
             }
 
-            const days =
-                Math.floor(
-                    distance /
-                    (1000 * 60 * 60 * 24)
-                );
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            const hours =
-                Math.floor(
-                    (distance %
-                    (1000 * 60 * 60 * 24)) /
-                    (1000 * 60 * 60)
-                );
-
-            const minutes =
-                Math.floor(
-                    (distance %
-                    (1000 * 60 * 60)) /
-                    (1000 * 60)
-                );
-
-            const seconds =
-                Math.floor(
-                    (distance %
-                    (1000 * 60)) /
-                    1000
-                );
-
-            document.getElementById("days").innerText =
-                String(days).padStart(2, "0");
-
-            document.getElementById("hours").innerText =
-                String(hours).padStart(2, "0");
-
-            document.getElementById("minutes").innerText =
-                String(minutes).padStart(2, "0");
-
-            document.getElementById("seconds").innerText =
-                String(seconds).padStart(2, "0");
-
+            document.getElementById("days").innerText = String(days).padStart(2, "0");
+            document.getElementById("hours").innerText = String(hours).padStart(2, "0");
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
         }
 
         updateCountdown();
-
         setInterval(updateCountdown, 1000);
 
-
         /* =========================================================
-           PROTECT RING IMAGE
+           IMAGE PROTECTION & ACCESSIBILITY
         ========================================================= */
-
-        const ring =
-            document.querySelector(".the-ring");
-
+        const ring = document.querySelector(".the-ring");
         if (ring) {
-
-            ring.addEventListener(
-                "contextmenu",
-                function(event) {
-                    event.preventDefault();
-                }
-            );
-
-            ring.addEventListener(
-                "dragstart",
-                function(event) {
-                    event.preventDefault();
-                }
-            );
-
-            ring.addEventListener(
-                "touchstart",
-                function() {
-                    this.style.pointerEvents = "none";
-
-                    setTimeout(() => {
-                        this.style.pointerEvents = "none";
-                    }, 100);
-                },
-                { passive: true }
-            );
-
+            ring.addEventListener("contextmenu", e => e.preventDefault());
+            ring.addEventListener("dragstart", e => e.preventDefault());
+            ring.addEventListener("touchstart", function() {
+                this.style.pointerEvents = "none";
+                setTimeout(() => { this.style.pointerEvents = "none"; }, 100);
+            }, { passive: true });
         }
 
+        document.addEventListener("contextmenu", e => {
+            if (e.target.tagName === "IMG" || e.target.closest(".ring-protection")) e.preventDefault();
+        });
 
-        /* =========================================================
-           GLOBAL IMAGE PROTECTION
-        ========================================================= */
-
-        document.addEventListener(
-            "contextmenu",
-            function(event) {
-
-                if (
-                    event.target.tagName === "IMG" ||
-                    event.target.closest(".ring-protection")
-                ) {
-                    event.preventDefault();
-                }
-
-            }
-        );
-
-
-        document.addEventListener(
-            "dragstart",
-            function(event) {
-
-                if (event.target.tagName === "IMG") {
-                    event.preventDefault();
-                }
-
-            }
-        );
-
-
-        /* =========================================================
-           PREVENT DOUBLE-TAP ZOOM
-        ========================================================= */
+        document.addEventListener("dragstart", e => {
+            if (e.target.tagName === "IMG") e.preventDefault();
+        });
 
         let lastTouchEnd = 0;
-
-        document.addEventListener(
-            "touchend",
-            function(event) {
-
-                const now =
-                    Date.now();
-
-                if (now - lastTouchEnd <= 300) {
-                    event.preventDefault();
-                }
-
-                lastTouchEnd = now;
-
-            },
-            { passive: false }
-        );
+        document.addEventListener("touchend", e => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) e.preventDefault();
+            lastTouchEnd = now;
+        }, { passive: false });
 
     </script>
-
 </body>
 </html>
