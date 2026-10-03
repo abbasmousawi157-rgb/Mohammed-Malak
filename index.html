@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="theme-color" content="#02040a">
     <title>دعوة خطوبة - محمد وملاك</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;600&family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;600&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg: #02050b;
-            --bg-soft: #070b13;
-            --white: #f5f7fb;
-            --silver: #dce3ee;
-            --muted: #929aaa;
-            --line: rgba(220,227,238,.27);
-            --glass: rgba(8,12,21,.68);
-            --gold: #cbb47a;
-            --gold-soft: rgba(203,180,122,.5);
+            --bg-edge: #02040a;
+            --bg-center: #0b111c;
+            --text-main: #f8f8f8;
+            --text-muted: #9aa3b2;
+            --platinum-color: #e2e8f0;
+            --ruby-red: #e11d48;
+            --gold: #d4af37;
         }
 
         * {
@@ -30,303 +31,255 @@
 
         html {
             scroll-behavior: smooth;
-            background: #000;
+            background: var(--bg-edge);
         }
 
         body {
+            width: 100%;
+            min-height: 100%;
             margin: 0;
             padding: 0;
-            min-height: 100%;
-            background: var(--bg);
-            color: var(--white);
-            overflow-x: hidden;
+            overflow-x: hidden !important;
+            background: var(--bg-edge);
+            color: var(--text-main);
             position: relative;
-            isolation: isolate;
+            font-family: 'Cairo', sans-serif;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        body::before {
-            content: "";
-            position: absolute;
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+        .background-layer {
+            position: fixed;
             inset: 0;
             z-index: -20;
-            pointer-events: none;
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,.18),
-                    rgba(0,0,0,.03) 18%,
-                    rgba(0,0,0,.10) 50%,
-                    rgba(0,0,0,.28) 100%
-                ),
-                url("background.PNG") center top / 100% 100% no-repeat;
+            background-color: #02040a;
+            background-image: url("background.PNG");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transform: translateZ(0);
         }
 
-        body::after {
-            content: "";
-            position: absolute;
+        .background-overlay {
+            position: fixed;
             inset: 0;
             z-index: -19;
             pointer-events: none;
+
             background:
-                radial-gradient(
-                    circle at 50% 12%,
-                    rgba(255,255,255,.06),
-                    transparent 27%
-                ),
-                radial-gradient(
-                    circle at 50% 48%,
-                    rgba(77,101,140,.05),
-                    transparent 38%
-                ),
                 linear-gradient(
                     to bottom,
-                    transparent 0%,
-                    rgba(0,0,0,.10) 65%,
-                    rgba(0,0,0,.32) 100%
+                    rgba(0,0,0,0.16) 0%,
+                    rgba(0,0,0,0.08) 30%,
+                    rgba(0,0,0,0.18) 60%,
+                    rgba(0,0,0,0.42) 100%
                 );
+
+            box-shadow:
+                inset 0 0 150px rgba(0,0,0,0.72);
         }
 
-        #page-background {
-            position: absolute;
+        .background-vignette {
+            position: fixed;
             inset: 0;
             z-index: -18;
             pointer-events: none;
-            overflow: hidden;
-        }
-
-        #page-background::before {
-            content: "";
-            position: absolute;
-            inset: 0;
             background:
                 radial-gradient(
-                    circle at 50% 20%,
-                    rgba(255,255,255,.035),
-                    transparent 30%
+                    ellipse at center,
+                    transparent 28%,
+                    rgba(0,0,0,0.16) 62%,
+                    rgba(0,0,0,0.65) 100%
                 );
         }
 
-        body,
-        #main-invite {
-            position: relative;
-        }
-
-        .font-amiri {
-            font-family: "Amiri", serif;
-        }
-
-        .font-cairo {
-            font-family: "Cairo", sans-serif;
-        }
-
-        .font-playfair {
-            font-family: "Playfair Display", serif;
-        }
-
-        /* =========================
+        /* =========================================================
            SPLASH
-        ========================= */
+        ========================================================= */
 
         #splash {
             position: fixed;
             inset: 0;
             z-index: 9999;
+
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+
             overflow: hidden;
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(34,44,62,.42) 0%,
-                    rgba(4,7,13,.96) 48%,
-                    #000 100%
-                );
             cursor: pointer;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.38),
+                    rgba(0,0,0,0.58)
+                ),
+                url("background.PNG") center center / cover no-repeat;
+
             transition:
-                opacity 1.35s cubic-bezier(.77,0,.175,1),
-                transform 1.35s cubic-bezier(.77,0,.175,1);
+                opacity 1.4s cubic-bezier(0.77,0,0.175,1),
+                transform 1.4s cubic-bezier(0.77,0,0.175,1);
         }
 
         #splash::before {
             content: "";
             position: absolute;
-            inset: 18px;
-            border: 1px solid rgba(220,227,238,.12);
+            inset: 20px;
+
+            border: 1px solid rgba(226,232,240,0.18);
+
+            box-shadow:
+                inset 0 0 50px rgba(0,0,0,0.4),
+                0 0 50px rgba(0,0,0,0.4);
+
             pointer-events: none;
         }
 
-        #splash::after {
-            content: "";
+        .splash-glow {
             position: absolute;
-            inset: 28px;
-            border: 1px solid rgba(203,180,122,.06);
-            pointer-events: none;
-        }
+            top: 42%;
+            left: 50%;
 
-        .splash-bg {
-            position: absolute;
-            inset: 0;
+            width: 280px;
+            height: 280px;
+
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+
             background:
                 radial-gradient(
-                    circle at 50% 46%,
-                    rgba(230,236,246,.10),
-                    transparent 20%
-                ),
-                radial-gradient(
-                    circle at 50% 50%,
-                    rgba(92,112,143,.10),
-                    transparent 40%
+                    circle,
+                    rgba(226,232,240,0.15) 0%,
+                    rgba(226,232,240,0.05) 35%,
+                    transparent 72%
                 );
-            animation: splashBreath 4s ease-in-out infinite alternate;
-        }
 
-        .splash-content {
-            position: relative;
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-        }
-
-        .splash-top {
-            font-family: "Cairo", sans-serif;
-            font-size: 10px;
-            letter-spacing: 5px;
-            color: rgba(220,227,238,.48);
-            margin-bottom: 45px;
-            text-transform: uppercase;
-        }
-
-        .diamond-stage {
-            position: relative;
-            width: 112px;
-            height: 112px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 35px;
-        }
-
-        .diamond-stage::before {
-            content: "";
-            position: absolute;
-            width: 82px;
-            height: 82px;
-            border: 1px solid rgba(220,227,238,.25);
-            transform: rotate(45deg);
-            animation: diamondBorder 5s linear infinite;
-        }
-
-        .diamond-stage::after {
-            content: "";
-            position: absolute;
-            width: 135px;
-            height: 135px;
-            border-radius: 50%;
-            background: radial-gradient(
-                circle,
-                rgba(230,236,246,.18),
-                rgba(230,236,246,.04) 35%,
-                transparent 70%
-            );
-            animation: diamondGlow 2.8s ease-in-out infinite alternate;
+            animation: pulse-splash 4s ease-in-out infinite alternate;
+            pointer-events: none;
         }
 
         .diamond-icon {
             position: relative;
-            z-index: 4;
-            font-size: 42px;
-            color: #eef2f8;
+            z-index: 10;
+
+            font-size: 3.5rem;
+            color: var(--platinum-color);
+
             text-shadow:
-                0 0 8px rgba(255,255,255,.75),
-                0 0 25px rgba(218,226,238,.45),
-                0 0 55px rgba(218,226,238,.18);
-            animation: diamondFloat 4s ease-in-out infinite;
+                0 0 10px rgba(255,255,255,0.5),
+                0 0 25px rgba(226,232,240,0.8),
+                0 0 50px rgba(226,232,240,0.25);
+
+            animation: float-diamond 4s ease-in-out infinite;
+
+            transition:
+                transform 0.6s ease,
+                filter 0.6s ease;
         }
 
-        .splash-names {
-            font-family: "Amiri", serif;
-            font-size: 36px;
+        .splash-title {
+            position: relative;
+            z-index: 10;
+
+            margin-top: 45px;
+            margin-bottom: 5px;
+
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.7rem, 10vw, 4rem);
             font-weight: 700;
-            color: #f2f4f8;
-            letter-spacing: 2px;
-            text-shadow: 0 0 25px rgba(255,255,255,.20);
+
+            color: #ffffff;
+
+            text-shadow:
+                0 0 15px rgba(255,255,255,0.7),
+                0 0 35px rgba(255,255,255,0.35);
+
+            white-space: nowrap;
         }
 
         .splash-subtitle {
-            margin-top: 12px;
-            font-family: "Cairo", sans-serif;
-            font-size: 11px;
-            color: rgba(220,227,238,.48);
-            letter-spacing: 2px;
+            position: relative;
+            z-index: 10;
+
+            margin-top: 8px;
+
+            color: rgba(226,232,240,0.8);
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
         }
 
         .splash-hint {
             position: absolute;
-            bottom: 34px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            text-align: center;
-            font-family: "Cairo", sans-serif;
-            font-size: 11px;
-            color: rgba(220,227,238,.48);
+            bottom: 35px;
+
+            color: rgba(226,232,240,0.62);
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+
             animation: hintPulse 2.5s ease-in-out infinite;
         }
-
-        #splash.hidden-splash {
-            opacity: 0;
-            transform: scale(1.06);
-            pointer-events: none;
-        }
-
-        /* =========================
-           FLASH
-        ========================= */
 
         #flash-white {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            pointer-events: none;
-            opacity: 0;
+
             background:
                 radial-gradient(
                     circle at center,
-                    rgba(255,255,255,.95) 0%,
-                    rgba(244,239,225,.70) 18%,
-                    rgba(255,255,255,.20) 42%,
-                    transparent 70%
+                    rgba(255,255,255,0.95),
+                    rgba(255,255,255,0.55) 35%,
+                    rgba(255,255,255,0) 75%
                 );
-            transition: opacity .75s ease;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 0.8s ease-out;
         }
 
-        /* =========================
-           MAIN
-        ========================= */
+        #splash.hidden-splash {
+            opacity: 0;
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        /* =========================================================
+           MAIN INVITATION
+        ========================================================= */
 
         #main-invite {
+            position: relative;
+            z-index: 10;
+
             width: 100%;
-            max-width: 540px;
-            margin: 0 auto;
+            max-width: 500px;
+
             min-height: 100vh;
-            padding:
-                70px
-                18px
-                90px;
+
+            margin: 0 auto;
+            padding: 65px 18px 90px;
+
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
-            z-index: 5;
+
             opacity: 0;
-            transform: translateY(25px);
+            transform: translateY(30px);
+
             transition:
-                opacity 1.5s ease .25s,
-                transform 1.5s cubic-bezier(.25,1,.5,1) .25s;
+                opacity 1.8s cubic-bezier(0.25,1,0.5,1),
+                transform 1.8s cubic-bezier(0.25,1,0.5,1);
         }
 
         body.revealed #main-invite {
@@ -334,718 +287,996 @@
             transform: translateY(0);
         }
 
-        .top-ornament {
-            width: min(86%, 390px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 11px;
-            margin-bottom: 38px;
-            opacity: .68;
+        /* =========================================================
+           TYPOGRAPHY
+        ========================================================= */
+
+        .font-amiri {
+            font-family: 'Amiri', serif;
         }
 
-        .top-ornament .line {
-            height: 1px;
-            flex: 1;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(220,227,238,.55)
-            );
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
         }
 
-        .top-ornament .line:last-child {
-            background: linear-gradient(
-                90deg,
-                rgba(220,227,238,.55),
-                transparent
-            );
+        .font-cairo {
+            font-family: 'Cairo', sans-serif;
         }
 
-        .ornament-center {
-            color: var(--silver);
-            font-size: 13px;
-            text-shadow: 0 0 10px rgba(255,255,255,.4);
+        .text-glow {
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.18);
         }
 
-        .intro {
+        .text-platinum-accent {
+            color: var(--platinum-color);
+
+            text-shadow:
+                0 0 10px rgba(226,232,240,0.28);
+        }
+
+        .text-radiant-glow {
+            color: #ffffff;
+
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.75),
+                0 0 28px rgba(255,255,255,0.35);
+        }
+
+        /* =========================================================
+           TOP SECTION
+        ========================================================= */
+
+        .intro-section {
             width: 100%;
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
+
+            margin-bottom: 34px;
         }
 
         .bismillah {
-            margin: 0 0 25px;
-            font-family: "Amiri", serif;
-            font-size: clamp(29px, 8vw, 42px);
-            line-height: 1.5;
+            margin: 0 0 20px;
+
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.85rem, 7vw, 2.6rem);
             font-weight: 700;
-            color: #f1f3f7;
+
+            color: var(--platinum-color);
+
+            line-height: 1.8;
+
             text-shadow:
-                0 0 12px rgba(255,255,255,.17),
-                0 0 30px rgba(255,255,255,.08);
+                0 0 12px rgba(255,255,255,0.28);
         }
 
-        .verse {
+        .quran-verse {
             width: 100%;
+
             margin: 0;
-            padding: 0 8px;
-            font-family: "Amiri", serif;
-            font-size: clamp(18px, 5.2vw, 24px);
-            line-height: 2.05;
-            color: rgba(235,239,246,.92);
-            text-shadow: 0 0 15px rgba(255,255,255,.09);
+            padding: 0 2px;
+
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.25rem, 5.5vw, 1.55rem);
+
+            color: rgba(226,232,240,0.94);
+
+            line-height: 2.25;
+
+            text-align: center;
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.18);
         }
 
-        .verse-ref {
-            margin-top: 13px;
-            font-family: "Cairo", sans-serif;
-            font-size: 12px;
-            color: rgba(220,227,238,.63);
+        .verse-reference {
+            margin-top: 12px;
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.82rem;
+
+            color: rgba(226,232,240,0.68);
         }
 
-        .separator {
-            width: min(82%, 360px);
+        /* =========================================================
+           DECORATIVE DIVIDER
+        ========================================================= */
+
+        .lux-divider {
+            width: 72%;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin: 31px auto;
+
+            margin: 12px auto 32px;
         }
 
-        .separator-line {
-            height: 1px;
+        .lux-line {
             flex: 1;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(220,227,238,.55)
-            );
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(226,232,240,0.62)
+                );
         }
 
-        .separator-line:last-child {
-            background: linear-gradient(
-                90deg,
-                rgba(220,227,238,.55),
-                transparent
-            );
+        .lux-line.reverse {
+            background:
+                linear-gradient(
+                    to left,
+                    transparent,
+                    rgba(226,232,240,0.62)
+                );
         }
 
-        .separator-symbol {
-            color: rgba(235,239,246,.82);
-            font-size: 15px;
-            text-shadow: 0 0 12px rgba(255,255,255,.35);
-            white-space: nowrap;
+        .lux-symbol {
+            margin: 0 13px;
+
+            color: rgba(226,232,240,0.85);
+
+            font-size: 17px;
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.3);
         }
+
+        /* =========================================================
+           INVITATION TEXT
+        ========================================================= */
 
         .invitation-text {
-            text-align: center;
-            margin-bottom: 26px;
-        }
-
-        .invitation-text .main {
-            margin: 0 0 8px;
-            font-family: "Amiri", serif;
-            font-size: 26px;
-            color: #eef1f6;
-            text-shadow: 0 0 14px rgba(255,255,255,.11);
-        }
-
-        .invitation-text .sub {
-            margin: 0;
-            font-family: "Cairo", sans-serif;
-            font-size: 14px;
-            line-height: 1.9;
-            color: rgba(210,217,228,.72);
-        }
-
-        /* =========================
-           NAMES
-        ========================= */
-
-        .names-box {
-            position: relative;
             width: 100%;
-            text-align: center;
+
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 17px;
-            direction: rtl;
-            margin: 4px 0 14px;
-            min-height: 76px;
+
+            text-align: center;
+
+            margin-bottom: 30px;
         }
 
-        .name {
-            font-family: "Amiri", serif;
-            font-size: clamp(48px, 14vw, 72px);
-            line-height: 1;
-            font-weight: 700;
-            color: #f5f7fa;
+        .invitation-title {
+            margin: 0 0 9px;
+
+            font-family: 'Amiri', serif;
+            font-size: 1.75rem;
+
+            color: var(--platinum-color);
+
             text-shadow:
-                0 0 12px rgba(255,255,255,.18),
-                0 0 28px rgba(255,255,255,.09);
+                0 0 12px rgba(255,255,255,0.22);
+        }
+
+        .invitation-subtitle {
+            margin: 0;
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+
+            color: rgba(226,232,240,0.82);
+
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           NAMES
+        ========================================================= */
+
+        .name-container {
+            position: relative;
+
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 8px 0 18px;
+
+            direction: ltr;
+
             white-space: nowrap;
         }
 
-        .amp {
-            font-family: "Playfair Display", serif;
-            font-size: 31px;
-            font-weight: 400;
-            color: rgba(210,217,228,.76);
-            margin-top: 5px;
+        .main-name {
+            display: inline-block;
+
+            font-family: 'Amiri', serif;
+            font-size: clamp(3.8rem, 15vw, 5.2rem);
+            line-height: 1.15;
+
+            color: #ffffff;
+
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.75),
+                0 0 30px rgba(255,255,255,0.3);
+
+            animation: nameGlow 4s ease-in-out infinite alternate;
         }
 
-        .date {
-            margin-top: 17px;
-            font-family: "Playfair Display", serif;
-            font-size: clamp(18px, 5vw, 24px);
-            letter-spacing: 7px;
-            color: #eef1f5;
+        .name-ampersand {
+            display: inline-block;
+
+            margin: 0 13px;
+
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+
+            color: rgba(226,232,240,0.72);
+
+            text-shadow: none;
+        }
+
+        .name-groom {
+            animation-delay: 1.5s;
+        }
+
+        .gold-dust {
+            position: absolute;
+
+            width: 2.5px;
+            height: 2.5px;
+
+            border-radius: 50%;
+
+            background: var(--gold);
+
+            box-shadow:
+                0 0 6px #f8e9c0,
+                0 0 12px var(--gold);
+
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* =========================================================
+           DATE
+        ========================================================= */
+
+        .event-date {
+            margin: 0 0 25px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: clamp(1.15rem, 5vw, 1.5rem);
+            font-weight: 600;
+
+            letter-spacing: 0.42em;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.6),
+                0 0 25px rgba(255,255,255,0.25);
+
             direction: ltr;
-            text-shadow: 0 0 18px rgba(255,255,255,.12);
         }
 
-        /* =========================
+        /* =========================================================
            RING
-        ========================= */
+        ========================================================= */
 
         .ring-showcase {
-            position: relative;
             width: 100%;
-            height: 245px;
+
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 12px 0 4px;
-            perspective: 1000px;
+            align-items: center;
+
+            margin: 0 0 20px;
+
+            perspective: 1200px;
+
+            overflow: visible;
         }
 
-        .ring-showcase::before {
-            content: "";
-            position: absolute;
-            width: 210px;
-            height: 120px;
-            border-radius: 50%;
-            background: radial-gradient(
-                ellipse,
-                rgba(255,255,255,.17),
-                rgba(211,220,232,.07) 35%,
-                transparent 70%
-            );
-            filter: blur(18px);
-            opacity: .75;
-        }
+        .ring-protection {
+            position: relative;
 
-        .ring-showcase::after {
-            content: "";
-            position: absolute;
-            bottom: 32px;
-            width: 175px;
-            height: 20px;
-            border-radius: 50%;
-            background: radial-gradient(
-                ellipse,
-                rgba(255,255,255,.20),
-                transparent 70%
-            );
-            filter: blur(9px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 180px;
+            height: 150px;
+
+            overflow: visible;
+
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .the-ring {
-            position: relative;
-            z-index: 3;
-            width: min(270px, 76vw);
-            max-height: 220px;
-            object-fit: contain;
+            display: block;
+
+            width: 145px;
+            height: auto;
+
+            pointer-events: none;
+
+            -webkit-user-drag: none;
+            user-drag: none;
+
+            -webkit-touch-callout: none;
+
+            user-select: none;
+
+            transform-style: preserve-3d;
+
             filter:
-                drop-shadow(0 0 8px rgba(255,255,255,.20))
-                drop-shadow(0 0 28px rgba(207,219,235,.12));
-            animation: ringFloat 5s ease-in-out infinite;
+                drop-shadow(0 0 8px rgba(255,255,255,0.28));
+
+            animation:
+                slowRingRotation 28s ease-in-out infinite;
+
+            will-change: transform, filter;
         }
 
-        /* =========================
+        .ring-reflection {
+            position: absolute;
+
+            bottom: 2px;
+            left: 50%;
+
+            width: 105px;
+            height: 18px;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(255,255,255,0.22),
+                    transparent 70%
+                );
+
+            filter: blur(5px);
+
+            opacity: 0.6;
+
+            pointer-events: none;
+        }
+
+        /* =========================================================
            ROMANTIC QUOTE
-        ========================= */
+        ========================================================= */
 
         .romantic-quote {
             width: 100%;
+
+            margin: 5px 0 35px;
+
+            font-family: 'Amiri', serif;
+
+            font-size: clamp(1.45rem, 6vw, 1.9rem);
+
+            color: var(--platinum-color);
+
             text-align: center;
-            margin: 17px 0 34px;
+
+            line-height: 2.1;
+
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.22);
         }
 
-        .romantic-quote p {
-            margin: 0;
-            font-family: "Amiri", serif;
-            font-size: clamp(23px, 6.5vw, 31px);
-            line-height: 2.05;
-            color: rgba(239,242,247,.94);
-            text-shadow: 0 0 18px rgba(255,255,255,.10);
-        }
-
-        /* =========================
+        /* =========================================================
            COUNTDOWN
-        ========================= */
+        ========================================================= */
 
         .countdown-glass {
-            position: relative;
-            width: 100%;
-            padding: 22px 13px 20px;
-            margin: 0 0 43px;
-            border: 1px solid rgba(220,227,238,.23);
-            border-radius: 26px;
+            width: 96%;
+
+            margin: 0 0 42px;
+
+            padding: 22px 14px 20px;
+
+            border-radius: 24px;
+
             background:
                 linear-gradient(
-                    145deg,
-                    rgba(18,23,34,.82),
-                    rgba(4,7,13,.73)
+                    135deg,
+                    rgba(255,255,255,0.07),
+                    rgba(0,0,0,0.42)
                 );
-            backdrop-filter: blur(13px);
-            -webkit-backdrop-filter: blur(13px);
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,.06),
-                0 20px 50px rgba(0,0,0,.34);
-        }
 
-        .countdown-glass::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 15%;
-            right: 15%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,.26),
-                transparent
-            );
+            border:
+                1px solid rgba(226,232,240,0.17);
+
+            border-top-color:
+                rgba(255,255,255,0.3);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 22px 45px rgba(0,0,0,0.55),
+                inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
         .countdown-title {
-            margin: 0 0 19px;
+            margin: 0 0 17px;
+
             text-align: center;
-            font-family: "Amiri", serif;
-            font-size: 24px;
-            color: #edf1f6;
+
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+
+            color: var(--platinum-color);
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.2);
         }
 
-        #countdown-box {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 7px;
+        .countdown-box {
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 5px;
+
             direction: ltr;
         }
 
         .time-block {
+            flex: 1;
+
+            min-width: 0;
+
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 0;
         }
 
         .time-val {
-            width: 100%;
-            min-height: 66px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 15px;
-            border: 1px solid rgba(220,227,238,.10);
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.045),
-                    rgba(0,0,0,.34)
-                );
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,.025),
-                0 9px 22px rgba(0,0,0,.25);
-            color: #f5f6f8;
-            font-family: "Playfair Display", serif;
-            font-size: clamp(25px, 7vw, 35px);
+            width: 88%;
+
+            padding: 9px 2px;
+
+            border-radius: 12px;
+
+            background: rgba(0,0,0,0.48);
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            color: #ffffff;
+
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
             font-weight: 600;
-            text-shadow: 0 0 14px rgba(255,255,255,.14);
+
+            text-align: center;
+
+            text-shadow:
+                0 0 15px rgba(255,255,255,0.65);
+
+            box-shadow:
+                inset 0 0 12px rgba(255,255,255,0.025);
+
+            animation:
+                pulse-radiant 2.8s ease-in-out infinite alternate;
         }
 
         .time-label {
-            margin-top: 8px;
-            font-family: "Cairo", sans-serif;
-            font-size: 12px;
-            color: rgba(185,194,207,.75);
+            margin-top: 7px;
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+
+            color: var(--text-muted);
         }
 
-        /* =========================
+        /* =========================================================
            DETAILS
-        ========================= */
+        ========================================================= */
 
-        .details-section {
+        .details-wrapper {
             width: 100%;
-            margin-bottom: 34px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            margin-bottom: 48px;
         }
 
         .details-grid {
             width: 100%;
+            max-width: 460px;
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr 1fr;
+
             direction: rtl;
+
+            text-align: center;
         }
 
         .detail-col {
             position: relative;
+
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
+
             padding: 0 7px;
         }
 
         .detail-col:not(:last-child)::after {
             content: "";
+
             position: absolute;
+
+            top: 12%;
+            bottom: 10%;
+
             left: 0;
-            top: 22px;
-            height: 84px;
+
             width: 1px;
-            background: linear-gradient(
-                to bottom,
-                transparent,
-                rgba(220,227,238,.26),
-                transparent
-            );
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(226,232,240,0.35),
+                    transparent
+                );
         }
 
         .icon-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 13px;
-            border: 1px solid rgba(220,227,238,.34);
-            background: rgba(4,7,13,.28);
-            color: #e2e7ef;
-            font-size: 20px;
+
+            margin-bottom: 14px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(226,232,240,0.38);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.08),
+                    rgba(0,0,0,0.08) 70%,
+                    transparent
+                );
+
+            color: var(--platinum-color);
+
+            font-size: 1.25rem;
+
             box-shadow:
-                inset 0 0 15px rgba(255,255,255,.025),
-                0 0 20px rgba(0,0,0,.16);
+                0 0 18px rgba(226,232,240,0.08);
         }
 
         .detail-title {
             margin-bottom: 5px;
-            font-family: "Cairo", sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            color: #edf0f5;
+
+            font-family: 'Cairo', sans-serif;
+
+            font-size: 1.05rem;
+            font-weight: 600;
+
+            color: var(--platinum-color);
+
+            white-space: nowrap;
         }
 
         .detail-subtitle {
-            font-family: "Cairo", sans-serif;
-            font-size: 12px;
-            line-height: 1.8;
-            color: rgba(175,184,198,.74);
+            font-family: 'Cairo', sans-serif;
+
+            font-size: 0.78rem;
+
+            color: rgba(154,163,178,0.95);
+
+            line-height: 1.75;
         }
 
-        /* =========================
-           MAP
-        ========================= */
+        /* =========================================================
+           MAP BUTTON
+        ========================================================= */
 
         .map-btn {
-            position: relative;
+            width: auto;
+            max-width: 92%;
+
             display: inline-flex;
             align-items: center;
             justify-content: center;
+
             gap: 10px;
-            margin-top: 32px;
-            min-width: 235px;
-            padding: 13px 27px;
-            border-radius: 999px;
-            border: 1px solid rgba(220,227,238,.35);
+
+            margin-top: 30px;
+
+            padding: 13px 30px;
+
+            border-radius: 50px;
+
+            border:
+                1px solid rgba(226,232,240,0.38);
+
             background:
                 linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.06),
-                    rgba(0,0,0,.17)
+                    135deg,
+                    rgba(255,255,255,0.08),
+                    rgba(0,0,0,0.22)
                 );
-            color: #e8ecf2;
+
+            color: var(--platinum-color);
+
             text-decoration: none;
-            font-family: "Cairo", sans-serif;
-            font-size: 14px;
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+
             box-shadow:
-                inset 0 1px 0 rgba(255,255,255,.05),
-                0 10px 25px rgba(0,0,0,.22);
+                0 10px 25px rgba(0,0,0,0.42);
+
             transition:
-                transform .3s ease,
-                background .3s ease,
-                border-color .3s ease;
+                transform 0.35s ease,
+                background 0.35s ease,
+                box-shadow 0.35s ease;
         }
 
-        .map-btn:hover,
         .map-btn:active {
-            transform: translateY(-2px);
-            background: rgba(255,255,255,.08);
-            border-color: rgba(220,227,238,.48);
+            transform: scale(0.97);
         }
 
-        .map-btn i {
-            font-size: 17px;
+        .map-btn:hover {
+            background:
+                rgba(226,232,240,0.12);
+
+            box-shadow:
+                0 14px 30px rgba(0,0,0,0.55),
+                0 0 18px rgba(226,232,240,0.15);
         }
 
-        /* =========================
-           BOTTOM ORNAMENT
-        ========================= */
+        /* =========================================================
+           LOWER DIVIDER
+        ========================================================= */
 
-        .bottom-section {
-            width: 100%;
+        .lower-divider {
+            width: 70%;
+
             display: flex;
-            flex-direction: column;
             align-items: center;
+
+            margin: 0 auto 28px;
+        }
+
+        .lower-line {
+            flex: 1;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(226,232,240,0.4)
+                );
+        }
+
+        .lower-line.reverse {
+            background:
+                linear-gradient(
+                    to left,
+                    transparent,
+                    rgba(226,232,240,0.4)
+                );
+        }
+
+        .heart {
+            margin: 0 12px;
+
+            color: var(--ruby-red);
+
+            font-size: 15px;
+
+            text-shadow:
+                0 0 12px rgba(225,29,72,0.7);
+
+            animation:
+                heartPulse 2.2s ease-in-out infinite;
+        }
+
+        /* =========================================================
+           PRAYER
+        ========================================================= */
+
+        .prayer {
+            width: 100%;
+
+            margin: 0 0 38px;
+
+            text-align: center;
+
+            font-family: 'Amiri', serif;
+
+            font-size: clamp(1.4rem, 6vw, 1.75rem);
+            font-weight: 700;
+
+            color: var(--platinum-color);
+
+            line-height: 2;
+
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.22);
+        }
+
+        /* =========================================================
+           CLOSING
+        ========================================================= */
+
+        .closing-text {
+            margin: 0 0 8px;
+
+            font-family: 'Cairo', sans-serif;
+
+            font-size: 0.9rem;
+
+            color: rgba(226,232,240,0.72);
+
             text-align: center;
         }
 
-        .prayer {
-            margin: 4px 0 29px;
-            font-family: "Amiri", serif;
-            font-size: clamp(20px, 5.8vw, 27px);
-            line-height: 2.1;
-            color: #e9edf3;
-            text-shadow: 0 0 14px rgba(255,255,255,.09);
-        }
-
-        .closing-text {
-            margin: 0 0 13px;
-            font-family: "Cairo", sans-serif;
-            font-size: 14px;
-            color: rgba(226,231,239,.82);
-        }
-
         .closing-names {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 13px;
-            direction: rtl;
+            margin: 0 0 30px;
+
+            direction: ltr;
+
+            font-family: 'Amiri', serif;
+
+            font-size: clamp(2rem, 9vw, 2.8rem);
+
+            color: #ffffff;
+
+            text-shadow:
+                0 0 15px rgba(255,255,255,0.55);
         }
 
-        .closing-name {
-            font-family: "Amiri", serif;
-            font-size: 31px;
-            color: #e9edf3;
-            text-shadow: 0 0 15px rgba(255,255,255,.10);
+        .closing-names .amp {
+            margin: 0 10px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 1.35rem;
+
+            color: rgba(226,232,240,0.65);
+
+            text-shadow: none;
         }
 
-        .closing-amp {
-            font-family: "Playfair Display", serif;
-            font-size: 20px;
-            color: rgba(205,213,224,.72);
-        }
-
-        .final-ornament {
-            width: min(75%, 290px);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 28px;
-            margin-bottom: 7px;
-        }
-
-        .final-ornament .line {
-            height: 1px;
-            flex: 1;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(220,227,238,.36)
-            );
-        }
-
-        .final-ornament .line:last-child {
-            background: linear-gradient(
-                90deg,
-                rgba(220,227,238,.36),
-                transparent
-            );
-        }
-
-        .final-symbol {
-            color: rgba(220,227,238,.70);
-            font-size: 12px;
-        }
-
-        /* =========================
+        /* =========================================================
            PARTICLES
-        ========================= */
+        ========================================================= */
 
         #particles-js {
             position: fixed;
             inset: 0;
-            z-index: 2;
+
+            z-index: 1;
+
             pointer-events: none;
+
+            opacity: 0.65;
         }
 
-        /* =========================
-           GOLD DUST
-        ========================= */
-
-        .gold-dust {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background: var(--gold);
-            box-shadow:
-                0 0 5px rgba(255,239,186,.85),
-                0 0 12px rgba(203,180,122,.55);
-            pointer-events: none;
-            z-index: 30;
-        }
-
-        /* =========================
+        /* =========================================================
            ANIMATIONS
-        ========================= */
+        ========================================================= */
 
-        @keyframes splashBreath {
-            from {
-                opacity: .65;
-                transform: scale(1);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1.04);
-            }
-        }
-
-        @keyframes diamondFloat {
+        @keyframes float-diamond {
             0%,100% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(0);
             }
+
             50% {
-                transform: translateY(-9px) rotate(2deg);
+                transform: translateY(-13px);
             }
         }
 
-        @keyframes diamondGlow {
+        @keyframes pulse-splash {
             from {
-                opacity: .35;
-                transform: scale(.92);
+                transform: translate(-50%,-50%) scale(0.95);
+                opacity: 0.45;
             }
-            to {
-                opacity: .85;
-                transform: scale(1.08);
-            }
-        }
 
-        @keyframes diamondBorder {
-            from {
-                transform: rotate(45deg);
-            }
             to {
-                transform: rotate(405deg);
+                transform: translate(-50%,-50%) scale(1.3);
+                opacity: 1;
             }
         }
 
         @keyframes hintPulse {
             0%,100% {
-                opacity: .35;
+                opacity: 0.45;
             }
+
             50% {
-                opacity: .8;
+                opacity: 0.9;
             }
         }
 
-        @keyframes ringFloat {
+        @keyframes nameGlow {
+            0% {
+                text-shadow:
+                    0 0 10px rgba(255,255,255,0.6),
+                    0 0 25px rgba(255,255,255,0.22);
+            }
+
+            100% {
+                text-shadow:
+                    0 0 20px rgba(255,255,255,0.95),
+                    0 0 42px rgba(255,255,255,0.4);
+            }
+        }
+
+        @keyframes slowRingRotation {
+            0% {
+                transform:
+                    rotateY(0deg)
+                    rotateZ(0deg)
+                    translateY(0);
+
+                filter:
+                    drop-shadow(0 0 7px rgba(255,255,255,0.25));
+            }
+
+            25% {
+                transform:
+                    rotateY(90deg)
+                    rotateZ(0.5deg)
+                    translateY(-2px);
+
+                filter:
+                    drop-shadow(0 0 17px rgba(255,255,255,0.45));
+            }
+
+            50% {
+                transform:
+                    rotateY(180deg)
+                    rotateZ(0deg)
+                    translateY(0);
+
+                filter:
+                    drop-shadow(0 0 7px rgba(255,255,255,0.25));
+            }
+
+            75% {
+                transform:
+                    rotateY(270deg)
+                    rotateZ(-0.5deg)
+                    translateY(-2px);
+
+                filter:
+                    drop-shadow(0 0 17px rgba(255,255,255,0.45));
+            }
+
+            100% {
+                transform:
+                    rotateY(360deg)
+                    rotateZ(0deg)
+                    translateY(0);
+
+                filter:
+                    drop-shadow(0 0 7px rgba(255,255,255,0.25));
+            }
+        }
+
+        @keyframes pulse-radiant {
+            from {
+                opacity: 0.82;
+
+                text-shadow:
+                    0 0 10px rgba(255,255,255,0.55);
+            }
+
+            to {
+                opacity: 1;
+
+                text-shadow:
+                    0 0 22px rgba(255,255,255,0.9),
+                    0 0 40px rgba(255,255,255,0.3);
+            }
+        }
+
+        @keyframes heartPulse {
             0%,100% {
-                transform: translateY(0) scale(1);
+                transform: scale(1);
             }
+
             50% {
-                transform: translateY(-7px) scale(1.015);
+                transform: scale(1.18);
             }
         }
 
-        /* =========================
+        /* =========================================================
            MOBILE
-        ========================= */
+        ========================================================= */
 
-        @media (max-width: 390px) {
+        @media (max-width: 380px) {
+
             #main-invite {
-                padding-left: 13px;
-                padding-right: 13px;
+                padding-left: 12px;
+                padding-right: 12px;
             }
 
-            .name {
-                font-size: 47px;
+            .bismillah {
+                font-size: 1.65rem;
             }
 
-            .amp {
-                font-size: 27px;
+            .quran-verse {
+                font-size: 1.13rem;
             }
 
-            .countdown-glass {
-                padding-left: 9px;
-                padding-right: 9px;
+            .main-name {
+                font-size: 3.45rem;
             }
 
-            .time-val {
-                min-height: 60px;
-                font-size: 24px;
+            .name-ampersand {
+                margin: 0 8px;
+                font-size: 1.7rem;
             }
 
             .icon-circle {
-                width: 54px;
-                height: 54px;
-                font-size: 18px;
+                width: 46px;
+                height: 46px;
             }
 
             .detail-title {
-                font-size: 14px;
+                font-size: 0.92rem;
             }
 
             .detail-subtitle {
-                font-size: 11px;
+                font-size: 0.7rem;
             }
 
-            .map-btn {
-                min-width: 220px;
-            }
-        }
-
-        @media (min-width: 700px) {
-            #main-invite {
-                max-width: 580px;
-                padding-top: 85px;
-            }
-
-            body::before {
-                background-size: 580px 100%;
-                background-position: center top;
-                background-color: #02050b;
-            }
-
-            body::after {
-                background:
-                    radial-gradient(
-                        circle at 50% 20%,
-                        rgba(255,255,255,.04),
-                        transparent 30%
-                    );
+            .time-val {
+                font-size: 1.35rem;
             }
         }
 
-        /* =========================
+        /* =========================================================
            REDUCED MOTION
-        ========================= */
+        ========================================================= */
 
         @media (prefers-reduced-motion: reduce) {
+
             *,
             *::before,
             *::after {
-                animation-duration: .01ms !important;
+                animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 scroll-behavior: auto !important;
-                transition-duration: .01ms !important;
+            }
+
+            #main-invite {
+                transition: none;
+            }
+
+            #splash {
+                transition: opacity 0.4s ease;
             }
         }
     </style>
@@ -1053,123 +1284,188 @@
 
 <body>
 
-    <div id="page-background"></div>
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================= -->
+
+    <div class="background-layer"></div>
+    <div class="background-overlay"></div>
+    <div class="background-vignette"></div>
+
+    <!-- =========================================================
+         AUDIO
+    ========================================================= -->
 
     <audio id="bg-audio" loop preload="auto">
-        <source src="https://ia800504.us.archive.org/33/items/canon-in-d_202208/Canon%20in%20D.mp3" type="audio/mpeg">
+        <source
+            src="https://ia800504.us.archive.org/33/items/canon-in-d_202208/Canon%20in%20D.mp3"
+            type="audio/mpeg">
     </audio>
+
+    <!-- =========================================================
+         FLASH
+    ========================================================= -->
 
     <div id="flash-white"></div>
 
+    <!-- =========================================================
+         PARTICLES
+    ========================================================= -->
+
     <div id="particles-js"></div>
 
+    <!-- =========================================================
+         SPLASH SCREEN
+    ========================================================= -->
+
     <section id="splash" onclick="unlockInvitation()">
-        <div class="splash-bg"></div>
 
-        <div class="splash-content">
-            <div class="splash-top">
-                ENGAGEMENT INVITATION
-            </div>
+        <div class="splash-glow"></div>
 
-            <div class="diamond-stage">
-                <div class="diamond-icon">
-                    <i class="fa-regular fa-gem"></i>
-                </div>
-            </div>
+        <p class="splash-subtitle">
+            Wedding Invitation
+        </p>
 
-            <div class="splash-names">
-                محمد و ملاك
-            </div>
-
-            <div class="splash-subtitle">
-                01 . 01 . 2028
-            </div>
+        <div class="diamond-icon" id="trigger-icon">
+            <i class="fa-regular fa-gem"></i>
         </div>
 
-        <div class="splash-hint">
+        <div class="splash-title">
+            ملاك &amp; محمد
+        </div>
+
+        <p class="splash-hint">
             المس الألماسة لتبدأ الحكاية
-        </div>
+        </p>
+
     </section>
+
+    <!-- =========================================================
+         MAIN INVITATION
+    ========================================================= -->
 
     <main id="main-invite">
 
-        <div class="top-ornament">
-            <span class="line"></span>
-            <span class="ornament-center">◇</span>
-            <span class="line"></span>
-        </div>
+        <!-- =====================================================
+             BISMILLAH + VERSE
+        ===================================================== -->
 
-        <section class="intro">
+        <section class="intro-section">
 
             <h1 class="bismillah">
                 بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
             </h1>
 
-            <p class="verse">
-                ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا<br>
-                لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
+            <p class="quran-verse">
+                { وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا<br>
+                لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً }
             </p>
 
-            <div class="verse-ref">
+            <div class="verse-reference">
                 (الروم - 21)
             </div>
 
         </section>
 
-        <div class="separator">
-            <span class="separator-line"></span>
-            <span class="separator-symbol">~ ♡ ~</span>
-            <span class="separator-line"></span>
+        <!-- =====================================================
+             DIVIDER
+        ===================================================== -->
+
+        <div class="lux-divider">
+
+            <div class="lux-line"></div>
+
+            <div class="lux-symbol">
+                ~ ♡ ~
+            </div>
+
+            <div class="lux-line reverse"></div>
+
         </div>
+
+        <!-- =====================================================
+             INVITATION TEXT
+        ===================================================== -->
 
         <section class="invitation-text">
 
-            <p class="main">
+            <p class="invitation-title">
                 بكل حب وامتنان
             </p>
 
-            <p class="sub">
+            <p class="invitation-subtitle">
                 ندعوكم لمشاركتنا فرحتنا بمناسبة خطوبتنا
             </p>
 
         </section>
 
-        <div id="names-box" class="names-box">
+        <!-- =====================================================
+             NAMES
+        ===================================================== -->
 
-            <span class="name name-bride">
+        <div
+            id="names-box"
+            class="name-container"
+            dir="ltr">
+
+            <span class="main-name name-bride">
                 ملاك
             </span>
 
-            <span class="amp">
-                &
+            <span class="name-ampersand">
+                &amp;
             </span>
 
-            <span class="name name-groom">
+            <span class="main-name name-groom">
                 محمد
             </span>
 
         </div>
 
-        <div class="date">
+        <!-- =====================================================
+             DATE
+        ===================================================== -->
+
+        <div class="event-date">
             01 . 01 . 2028
         </div>
 
+        <!-- =====================================================
+             RING
+        ===================================================== -->
+
         <div class="ring-showcase">
-            <img
-                src="ring.PNG"
-                alt="Diamond Ring"
-                class="the-ring"
-            >
+
+            <div class="ring-protection">
+
+                <img
+                    src="ring.PNG"
+                    alt="Diamond Ring"
+                    class="the-ring"
+                    draggable="false"
+                    oncontextmenu="return false;"
+                    ondragstart="return false;"
+                    onselectstart="return false;"
+                >
+
+                <div class="ring-reflection"></div>
+
+            </div>
+
         </div>
 
-        <section class="romantic-quote">
+        <!-- =====================================================
+             ROMANTIC QUOTE
+        ===================================================== -->
 
-            <p>
-                من بين كل الوجوه كنت أنتِ<br>
-                ومن بين كل الأقدار كنت قدري
-            </p>
+        <p class="romantic-quote">
+            من بين كل الوجوه كنت أنتِ<br>
+            ومن بين كل الأقدار كنت قدري
+        </p>
 
-        </section>
+        <!-- =====================================================
+             COUNTDOWN
+        ===================================================== -->
 
         <section class="countdown-glass">
 
@@ -1177,36 +1473,79 @@
                 العد التنازلي لفرحتنا
             </h2>
 
-            <div id="countdown-box">
+            <div
+                class="countdown-box"
+                id="countdown-box">
 
                 <div class="time-block">
-                    <div class="time-val" id="days">00</div>
-                    <div class="time-label">يوم</div>
+
+                    <div
+                        class="time-val"
+                        id="days">
+                        00
+                    </div>
+
+                    <div class="time-label">
+                        يوم
+                    </div>
+
                 </div>
 
                 <div class="time-block">
-                    <div class="time-val" id="hours">00</div>
-                    <div class="time-label">ساعة</div>
+
+                    <div
+                        class="time-val"
+                        id="hours">
+                        00
+                    </div>
+
+                    <div class="time-label">
+                        ساعة
+                    </div>
+
                 </div>
 
                 <div class="time-block">
-                    <div class="time-val" id="minutes">00</div>
-                    <div class="time-label">دقيقة</div>
+
+                    <div
+                        class="time-val"
+                        id="minutes">
+                        00
+                    </div>
+
+                    <div class="time-label">
+                        دقيقة
+                    </div>
+
                 </div>
 
                 <div class="time-block">
-                    <div class="time-val" id="seconds">00</div>
-                    <div class="time-label">ثانية</div>
+
+                    <div
+                        class="time-val"
+                        id="seconds">
+                        00
+                    </div>
+
+                    <div class="time-label">
+                        ثانية
+                    </div>
+
                 </div>
 
             </div>
 
         </section>
 
-        <section class="details-section">
+        <!-- =====================================================
+             EVENT DETAILS
+        ===================================================== -->
+
+        <section class="details-wrapper">
 
             <div class="details-grid">
 
+                <!-- Saturday -->
                 <div class="detail-col">
 
                     <div class="icon-circle">
@@ -1223,6 +1562,7 @@
 
                 </div>
 
+                <!-- Time -->
                 <div class="detail-col">
 
                     <div class="icon-circle">
@@ -1239,6 +1579,7 @@
 
                 </div>
 
+                <!-- Location -->
                 <div class="detail-col">
 
                     <div class="icon-circle">
@@ -1261,68 +1602,82 @@
                 href="https://maps.app.goo.gl/Sk3yoRBhzgz2TJX98?g_st=ic"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="map-btn"
-            >
+                class="map-btn">
+
                 <i class="fa-solid fa-map-location-dot"></i>
-                <span>عرض الموقع على الخريطة</span>
+
+                <span>
+                    عرض الموقع على الخريطة
+                </span>
+
             </a>
 
         </section>
 
-        <div class="separator">
-            <span class="separator-line"></span>
-            <span class="separator-symbol">❖</span>
-            <span class="separator-line"></span>
+        <!-- =====================================================
+             LOWER DIVIDER
+        ===================================================== -->
+
+        <div class="lower-divider">
+
+            <div class="lower-line"></div>
+
+            <div class="heart">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <div class="lower-line reverse"></div>
+
         </div>
 
-        <section class="bottom-section">
+        <!-- =====================================================
+             PRAYER
+        ===================================================== -->
 
-            <p class="prayer">
-                اللهم بارك لهما وبارك عليهما<br>
-                واجمع بينهما في خير
-            </p>
+        <p class="prayer">
+            اللهم بارك لهما وبارك عليهما<br>
+            واجمع بينهما في خير
+        </p>
 
-            <p class="closing-text">
-                بحضوركم تكتمل فرحتنا
-            </p>
+        <!-- =====================================================
+             CLOSING
+        ===================================================== -->
 
-            <div class="closing-names">
+        <p class="closing-text">
+            بحضوركم تكتمل فرحتنا
+        </p>
 
-                <span class="closing-name">
-                    ملاك
-                </span>
+        <div class="closing-names">
 
-                <span class="closing-amp">
-                    &
-                </span>
+            <span>
+                ملاك
+            </span>
 
-                <span class="closing-name">
-                    محمد
-                </span>
+            <span class="amp">
+                &amp;
+            </span>
 
-            </div>
+            <span>
+                محمد
+            </span>
 
-            <div class="final-ornament">
-
-                <span class="line"></span>
-
-                <span class="final-symbol">
-                    ◇ ♡ ◇
-                </span>
-
-                <span class="line"></span>
-
-            </div>
-
-        </section>
+        </div>
 
     </main>
+
+    <!-- =========================================================
+         PARTICLES JS
+    ========================================================= -->
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
+
+        /* =========================================================
+           SPLASH
+        ========================================================= */
+
         let isOpened = false;
-        let dustStarted = false;
 
         function unlockInvitation() {
 
@@ -1330,50 +1685,79 @@
 
             isOpened = true;
 
-            const splash = document.getElementById("splash");
-            const flash = document.getElementById("flash-white");
-            const audio = document.getElementById("bg-audio");
+            const splash =
+                document.getElementById("splash");
 
-            audio.volume = 0.42;
+            const flash =
+                document.getElementById("flash-white");
+
+            const audio =
+                document.getElementById("bg-audio");
+
+            const icon =
+                document.getElementById("trigger-icon");
+
+            /* Diamond interaction */
+
+            icon.style.transform = "scale(1.5)";
+
+            icon.style.filter =
+                "drop-shadow(0 0 40px #ffffff) brightness(1.5)";
+
+            /* Music */
 
             const playPromise = audio.play();
 
             if (playPromise !== undefined) {
+
                 playPromise.catch(() => {
-                    document.addEventListener(
+
+                    document.body.addEventListener(
                         "touchstart",
                         () => {
                             audio.play().catch(() => {});
                         },
                         { once: true }
                     );
+
                 });
+
             }
 
-            flash.style.opacity = "1";
+            /* Cinematic transition */
 
             setTimeout(() => {
 
-                document.body.classList.add("revealed");
-
-                splash.classList.add("hidden-splash");
-
-                flash.style.opacity = "0";
+                flash.style.opacity = "1";
 
                 setTimeout(() => {
-                    initParticles();
-                }, 350);
 
-                setTimeout(() => {
-                    startNameDust();
-                }, 1000);
+                    document.body.classList.add("revealed");
 
-                setTimeout(() => {
-                    splash.style.display = "none";
-                }, 1500);
+                    splash.classList.add("hidden-splash");
 
-            }, 420);
+                    flash.style.opacity = "0";
+
+                    setTimeout(initParticles, 350);
+
+                    setTimeout(startNameDust, 1200);
+
+                    setTimeout(() => {
+
+                        splash.style.display = "none";
+
+                    }, 1500);
+
+                }, 420);
+
+            }, 300);
+
         }
+
+
+        /* =========================================================
+           PARTICLES
+        ========================================================= */
 
         function initParticles() {
 
@@ -1384,7 +1768,7 @@
                 particles: {
 
                     number: {
-                        value: 42,
+                        value: 45,
                         density: {
                             enable: true,
                             value_area: 900
@@ -1392,11 +1776,7 @@
                     },
 
                     color: {
-                        value: [
-                            "#ffffff",
-                            "#dce3ee",
-                            "#cbb47a"
-                        ]
+                        value: "#e2e8f0"
                     },
 
                     shape: {
@@ -1404,14 +1784,8 @@
                     },
 
                     opacity: {
-                        value: 0.35,
-                        random: true,
-                        anim: {
-                            enable: true,
-                            speed: 0.35,
-                            opacity_min: 0.05,
-                            sync: false
-                        }
+                        value: 0.28,
+                        random: true
                     },
 
                     size: {
@@ -1424,13 +1798,21 @@
                     },
 
                     move: {
+
                         enable: true,
-                        speed: 0.28,
+
+                        speed: 0.32,
+
                         direction: "top",
+
                         random: true,
+
                         straight: false,
+
                         out_mode: "out",
+
                         bounce: false
+
                     }
 
                 },
@@ -1440,115 +1822,120 @@
                     detect_on: "canvas",
 
                     events: {
+
                         onhover: {
                             enable: false
                         },
+
                         onclick: {
                             enable: false
                         },
+
                         resize: true
+
                     }
 
                 },
 
                 retina_detect: true
+
             });
+
         }
+
+
+        /* =========================================================
+           GOLD DUST AROUND NAMES
+        ========================================================= */
 
         function startNameDust() {
 
-            if (dustStarted) return;
-
-            dustStarted = true;
-
-            const box = document.getElementById("names-box");
+            const box =
+                document.getElementById("names-box");
 
             if (!box) return;
 
             setInterval(() => {
 
-                const dust = document.createElement("span");
+                const dust =
+                    document.createElement("span");
 
                 dust.className = "gold-dust";
 
                 dust.style.left =
-                    (Math.random() * 90 + 5) + "%";
+                    (15 + Math.random() * 70) + "%";
 
                 dust.style.top =
-                    (Math.random() * 70 + 15) + "%";
+                    (30 + Math.random() * 40) + "%";
 
                 box.appendChild(dust);
 
-                const moveX =
-                    (Math.random() - 0.5) * 42;
+                const animation =
+                    dust.animate(
 
-                const moveY =
-                    -(20 + Math.random() * 45);
+                        [
+                            {
+                                transform:
+                                    "translate(0,0) scale(1)",
+                                opacity: 1
+                            },
 
-                const animation = dust.animate(
+                            {
+                                transform:
+                                    `translate(${(Math.random() - 0.5) * 45}px,-${30 + Math.random() * 55}px) scale(0)`,
+                                opacity: 0
+                            }
+                        ],
 
-                    [
                         {
-                            transform: "translate(0,0) scale(1)",
-                            opacity: 0
-                        },
-                        {
-                            transform: "translate(0,0) scale(1)",
-                            opacity: 0.9
-                        },
-                        {
-                            transform:
-                                `translate(${moveX}px,${moveY}px) scale(0)`,
-                            opacity: 0
+                            duration:
+                                2000 + Math.random() * 1500,
+
+                            easing:
+                                "ease-out"
                         }
-                    ],
 
-                    {
-                        duration:
-                            1800 + Math.random() * 1400,
-                        easing: "ease-out"
-                    }
-
-                );
+                    );
 
                 animation.onfinish = () => {
                     dust.remove();
                 };
 
-            }, 430);
+            }, 330);
+
         }
 
-        const targetDate =
-            new Date("2028-01-01T19:30:00").getTime();
+
+        /* =========================================================
+           COUNTDOWN
+        ========================================================= */
 
         function updateCountdown() {
 
-            const days = document.getElementById("days");
-            const hours = document.getElementById("hours");
-            const minutes = document.getElementById("minutes");
-            const seconds = document.getElementById("seconds");
+            const targetDate =
+                new Date("2028-01-01T19:30:00").getTime();
 
-            if (!days || !hours || !minutes || !seconds) {
-                return;
-            }
+            const now =
+                new Date().getTime();
 
-            const now = Date.now();
-
-            let distance = targetDate - now;
+            let distance =
+                targetDate - now;
 
             if (distance <= 0) {
 
-                distance = 0;
+                const box =
+                    document.getElementById("countdown-box");
 
-                document.getElementById("countdown-box").innerHTML = `
-                    <div style="
-                        grid-column:1/-1;
-                        text-align:center;
-                        padding:15px 5px;
-                        font-family:'Amiri',serif;
-                        font-size:21px;
-                        color:#e8edf4;
-                    ">
+                box.innerHTML = `
+                    <div
+                        style="
+                            width:100%;
+                            text-align:center;
+                            font-family:'Amiri',serif;
+                            font-size:1.45rem;
+                            color:#e2e8f0;
+                            padding:12px 0;
+                        ">
                         أهلاً بكم في يوم فرحتنا
                     </div>
                 `;
@@ -1556,53 +1943,124 @@
                 return;
             }
 
-            const totalSeconds =
-                Math.floor(distance / 1000);
-
-            const d =
+            const days =
                 Math.floor(
-                    totalSeconds / 86400
+                    distance /
+                    (1000 * 60 * 60 * 24)
                 );
 
-            const h =
+            const hours =
                 Math.floor(
-                    (totalSeconds % 86400) / 3600
+                    (distance %
+                    (1000 * 60 * 60 * 24)) /
+                    (1000 * 60 * 60)
                 );
 
-            const m =
+            const minutes =
                 Math.floor(
-                    (totalSeconds % 3600) / 60
+                    (distance %
+                    (1000 * 60 * 60)) /
+                    (1000 * 60)
                 );
 
-            const s =
-                totalSeconds % 60;
+            const seconds =
+                Math.floor(
+                    (distance %
+                    (1000 * 60)) /
+                    1000
+                );
 
-            days.textContent =
-                String(d).padStart(2, "0");
+            document.getElementById("days").innerText =
+                String(days).padStart(2, "0");
 
-            hours.textContent =
-                String(h).padStart(2, "0");
+            document.getElementById("hours").innerText =
+                String(hours).padStart(2, "0");
 
-            minutes.textContent =
-                String(m).padStart(2, "0");
+            document.getElementById("minutes").innerText =
+                String(minutes).padStart(2, "0");
 
-            seconds.textContent =
-                String(s).padStart(2, "0");
+            document.getElementById("seconds").innerText =
+                String(seconds).padStart(2, "0");
+
         }
 
         updateCountdown();
 
-        setInterval(
-            updateCountdown,
-            1000
-        );
+        setInterval(updateCountdown, 1000);
+
+
+        /* =========================================================
+           PROTECT RING IMAGE
+        ========================================================= */
+
+        const ring =
+            document.querySelector(".the-ring");
+
+        if (ring) {
+
+            ring.addEventListener(
+                "contextmenu",
+                function(event) {
+                    event.preventDefault();
+                }
+            );
+
+            ring.addEventListener(
+                "dragstart",
+                function(event) {
+                    event.preventDefault();
+                }
+            );
+
+            ring.addEventListener(
+                "touchstart",
+                function() {
+                    this.style.pointerEvents = "none";
+
+                    setTimeout(() => {
+                        this.style.pointerEvents = "none";
+                    }, 100);
+                },
+                { passive: true }
+            );
+
+        }
+
+
+        /* =========================================================
+           GLOBAL IMAGE PROTECTION
+        ========================================================= */
 
         document.addEventListener(
-            "gesturestart",
+            "contextmenu",
             function(event) {
-                event.preventDefault();
+
+                if (
+                    event.target.tagName === "IMG" ||
+                    event.target.closest(".ring-protection")
+                ) {
+                    event.preventDefault();
+                }
+
             }
         );
+
+
+        document.addEventListener(
+            "dragstart",
+            function(event) {
+
+                if (event.target.tagName === "IMG") {
+                    event.preventDefault();
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           PREVENT DOUBLE-TAP ZOOM
+        ========================================================= */
 
         let lastTouchEnd = 0;
 
@@ -1610,7 +2068,8 @@
             "touchend",
             function(event) {
 
-                const now = Date.now();
+                const now =
+                    Date.now();
 
                 if (now - lastTouchEnd <= 300) {
                     event.preventDefault();
@@ -1619,10 +2078,9 @@
                 lastTouchEnd = now;
 
             },
-            {
-                passive: false
-            }
+            { passive: false }
         );
+
     </script>
 
 </body>
