@@ -19,6 +19,7 @@
             --text-muted: #9aa3b2;
             --platinum-color: #e2e8f0;
             --ruby-red: #e11d48;
+            --dark-red: #990000; /* لون أحمر غامق جديد للقلب */
             --gold: #d4af37;
         }
 
@@ -29,7 +30,8 @@
 
         html {
             scroll-behavior: smooth;
-            background: transparent; /* إزالة أي لون خلفية */
+            /* تم جعل اللون أسود لمنع ظهور الوميض أو الحدود البيضاء عند التمرير في الآيفون */
+            background: #000000; 
         }
 
         body {
@@ -38,7 +40,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden !important;
-            background: transparent; /* إزالة أي لون خلفية */
+            background: #000000; /* خلفية سوداء تحت الصورة لمنع الحواف البيضاء */
             color: var(--text-main);
             position: relative;
             font-family: 'Cairo', sans-serif;
@@ -47,7 +49,7 @@
         }
 
         /* =========================================================
-           BACKGROUND - الخلفية الصافية
+           BACKGROUND - الخلفية الصافية المليئة بالشاشة
         ========================================================= */
 
         .background-layer {
@@ -57,14 +59,14 @@
             width: 100vw;
             height: 100vh;
             z-index: -20;
-            background-color: transparent;
+            background-color: #000000;
             background-image: url("background.PNG");
             background-position: center center;
             background-repeat: no-repeat;
-            background-size: cover; /* يضمن تغطية الشاشة بالكامل */
+            background-size: cover; 
         }
 
-        /* تم حذف طبقات التظليل السوداء (overlay و vignette) بالكامل */
+        /* تم حذف طبقات التظليل السوداء (overlay و vignette) بالكامل لتبدو الصورة ساطعة */
 
         /* =========================================================
            SPLASH
@@ -81,8 +83,8 @@
             overflow: hidden;
             cursor: pointer;
             
-            /* تم إزالة التظليل الأسود من شاشة البداية أيضاً */
             background: url("background.PNG") center center / cover no-repeat;
+            background-color: #000000;
 
             transition:
                 opacity 1.4s cubic-bezier(0.77,0,0.175,1),
@@ -116,7 +118,7 @@
             z-index: 10;
             font-size: 3.5rem;
             color: var(--platinum-color);
-            text-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 25px rgba(226,232,240,0.8); /* ظل أسود خفيف للنص ليقرأ فوق الأزهار */
+            text-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 25px rgba(226,232,240,0.8);
             animation: float-diamond 4s ease-in-out infinite;
             transition: transform 0.6s ease, filter 0.6s ease;
         }
@@ -130,7 +132,7 @@
             font-size: clamp(2.7rem, 10vw, 4rem);
             font-weight: 700;
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5); /* ظل للقراءة */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5);
             white-space: nowrap;
         }
 
@@ -218,7 +220,7 @@
             font-weight: 700;
             color: #ffffff;
             line-height: 1.8;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9); /* ظل لحماية النص من ضوء الأزهار */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
         .quran-verse {
@@ -233,8 +235,17 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
+        .sadaqa-allah {
+            display: block;
+            margin-top: 10px;
+            font-family: 'Amiri', serif;
+            font-size: clamp(1rem, 4vw, 1.15rem);
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+        }
+
         .verse-reference {
-            margin-top: 12px;
+            margin-top: 15px;
             font-family: 'Cairo', sans-serif;
             font-size: 0.82rem;
             color: #ffffff;
@@ -268,6 +279,13 @@
             color: #ffffff;
             font-size: 17px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+        }
+
+        .dark-red-heart {
+            color: var(--dark-red);
+            font-size: 1.2rem;
+            margin: 0 5px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
@@ -428,7 +446,7 @@
             margin: 0 0 42px;
             padding: 22px 14px 20px;
             border-radius: 24px;
-            background: rgba(0, 0, 0, 0.4); /* خلفية نصف شفافة داكنة لبروز العد التنازلي */
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255,255,255,0.15);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -730,7 +748,6 @@
 </head>
 <body>
 
-    <!-- تم حذف عناصر overlay و vignette من هنا تماماً -->
     <div class="background-layer"></div>
 
     <audio id="bg-audio" loop preload="auto">
@@ -756,13 +773,16 @@
             <p class="quran-verse">
                 { وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا<br>
                 لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً }
+                <span class="sadaqa-allah">صَدَقَ اللهُ العَلِيُّ العَظِيم</span>
             </p>
             <div class="verse-reference">(الروم - 21)</div>
         </section>
 
         <div class="lux-divider">
             <div class="lux-line"></div>
-            <div class="lux-symbol">~ ♡ ~</div>
+            <div class="lux-symbol">
+                ~ <i class="fa-solid fa-heart dark-red-heart"></i> ~
+            </div>
             <div class="lux-line reverse"></div>
         </div>
 
