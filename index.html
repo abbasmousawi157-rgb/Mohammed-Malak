@@ -1,5 +1,7 @@
 
-<<!DOCTYPE html>
+
+
+    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -50,21 +52,26 @@
         }
 
         /* =========================================================
-           BACKGROUND - الخلفية الصافية المليئة بالشاشة
+           BACKGROUND - الخلفية الصافية المليئة بالشاشة والثابتة تماماً
         ========================================================= */
 
         .background-layer {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1; /* تم التعديل لضمان بقائها خلف النص مباشرة وليس خلف المتصفح */
+            right: 0;
+            bottom: 0; /* استخدام الاتجاهات الأربعة يمنع مشكلة تحرك الصورة في الآيفون */
+            z-index: -1; 
             background-color: #000000;
             background-image: url("background.PNG");
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover; 
+            
+            /* هذه الأسطر تجبر المتصفح على تثبيت الصورة تماماً (Hardware Acceleration) */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
         }
 
         /* =========================================================
@@ -141,9 +148,8 @@
             margin-top: 8px;
             color: #ffffff;
             font-family: 'Cairo', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
+            font-size: 1rem; /* تم تكبير الخط قليلاً ليتناسب مع اللغة العربية */
+            letter-spacing: 0.1em;
             text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
@@ -758,7 +764,7 @@
 
     <section id="splash" onclick="unlockInvitation()">
         <div class="splash-glow"></div>
-        <p class="splash-subtitle">Wedding Invitation</p>
+        <p class="splash-subtitle">دعوة خطوبة</p>
         <div class="diamond-icon" id="trigger-icon">
             <i class="fa-regular fa-gem"></i>
         </div>
@@ -990,3 +996,6 @@
     </script>
 </body>
 </html>
+```
+
+جرب الكود الآن على الهاتف، ستجد أن الخلفية أصبحت صلبة وثابتة تماماً مهما قمت بالتمرير (Scrolling) لأعلى أو لأسفل.
