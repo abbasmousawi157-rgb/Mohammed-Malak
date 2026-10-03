@@ -49,7 +49,7 @@
         }
 
         /* =========================================================
-           BACKGROUND
+           BACKGROUND (تم التعديل هنا لضمان ظهور صورتك بوضوح)
         ========================================================= */
 
         .background-layer {
@@ -60,43 +60,45 @@
             height: 100%;
             z-index: -20;
             background-color: #02040a;
-            /* تم إرجاع اسم الصورة إلى background.PNG */
-            background-image: url("background.PNG"); 
+            background-image: url("background.PNG");
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-            transform: translateZ(0);
         }
 
-        /* طبقة تظليل لضمان عدم تداخل الخلفية مع النص */
+        /* تم تخفيف طبقة التظليل لتسمح لجمال الخلفية بالظهور */
         .background-overlay {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -19;
             pointer-events: none;
             background:
                 linear-gradient(
                     to bottom,
-                    rgba(0,0,0,0.35) 0%,
-                    rgba(0,0,0,0.15) 30%,
-                    rgba(0,0,0,0.35) 60%,
-                    rgba(0,0,0,0.65) 100%
+                    rgba(0,0,0,0.3) 0%,
+                    rgba(0,0,0,0.1) 40%,
+                    rgba(0,0,0,0.1) 60%,
+                    rgba(0,0,0,0.4) 100%
                 );
-            box-shadow:
-                inset 0 0 150px rgba(0,0,0,0.85);
         }
 
+        /* تم تخفيف الظلال الدائرية لمنع اللون الأسود من الطغيان */
         .background-vignette {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -18;
             pointer-events: none;
             background:
                 radial-gradient(
                     ellipse at center,
-                    transparent 15%,
-                    rgba(0,0,0,0.3) 60%,
-                    rgba(0,0,0,0.8) 100%
+                    transparent 40%,
+                    rgba(0,0,0,0.4) 100%
                 );
         }
 
@@ -116,8 +118,8 @@
             cursor: pointer;
             background:
                 linear-gradient(
-                    rgba(0,0,0,0.5),
-                    rgba(0,0,0,0.7)
+                    rgba(0,0,0,0.38),
+                    rgba(0,0,0,0.58)
                 ),
                 url("background.PNG") center center / cover no-repeat;
             transition:
@@ -165,9 +167,7 @@
                 0 0 25px rgba(226,232,240,0.8),
                 0 0 50px rgba(226,232,240,0.25);
             animation: float-diamond 4s ease-in-out infinite;
-            transition:
-                transform 0.6s ease,
-                filter 0.6s ease;
+            transition: transform 0.6s ease, filter 0.6s ease;
         }
 
         .splash-title {
@@ -179,9 +179,7 @@
             font-size: clamp(2.7rem, 10vw, 4rem);
             font-weight: 700;
             color: #ffffff;
-            text-shadow:
-                0 0 15px rgba(255,255,255,0.8),
-                0 0 35px rgba(0,0,0,0.8);
+            text-shadow: 0 0 15px rgba(0,0,0,0.9), 0 0 35px rgba(0,0,0,0.6);
             white-space: nowrap;
         }
 
@@ -194,6 +192,7 @@
             font-size: 0.8rem;
             letter-spacing: 0.28em;
             text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .splash-hint {
@@ -204,6 +203,7 @@
             font-size: 0.72rem;
             letter-spacing: 0.08em;
             animation: hintPulse 2.5s ease-in-out infinite;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         #flash-white {
@@ -283,7 +283,7 @@
             font-weight: 700;
             color: var(--platinum-color);
             line-height: 1.8;
-            text-shadow: 0 0 15px rgba(0,0,0,0.6), 0 0 12px rgba(255,255,255,0.28);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8), 0 0 12px rgba(255,255,255,0.15);
         }
 
         .quran-verse {
@@ -292,18 +292,18 @@
             padding: 0 2px;
             font-family: 'Amiri', serif;
             font-size: clamp(1.25rem, 5.5vw, 1.55rem);
-            color: #ffffff;
+            color: rgba(226,232,240,0.94);
             line-height: 2.25;
             text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.2);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(255,255,255,0.1);
         }
 
         .verse-reference {
             margin-top: 12px;
             font-family: 'Cairo', sans-serif;
             font-size: 0.82rem;
-            color: rgba(226,232,240,0.8);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            color: rgba(226,232,240,0.85);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
         }
 
         /* =========================================================
@@ -332,7 +332,7 @@
             margin: 0 13px;
             color: rgba(226,232,240,0.85);
             font-size: 17px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
         }
 
         /* =========================================================
@@ -353,7 +353,7 @@
             font-family: 'Amiri', serif;
             font-size: 1.75rem;
             color: var(--platinum-color);
-            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
         }
 
         .invitation-subtitle {
@@ -362,7 +362,7 @@
             font-size: 0.95rem;
             color: rgba(226,232,240,0.9);
             line-height: 1.8;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         /* =========================================================
@@ -389,7 +389,7 @@
             text-shadow:
                 0 0 12px rgba(255,255,255,0.75),
                 0 0 30px rgba(255,255,255,0.3),
-                0 4px 10px rgba(0,0,0,0.5);
+                0 4px 8px rgba(0,0,0,0.7);
             animation: nameGlow 4s ease-in-out infinite alternate;
         }
 
@@ -399,7 +399,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             color: rgba(226,232,240,0.85);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
         }
 
         .name-groom { animation-delay: 1.5s; }
@@ -410,9 +410,7 @@
             height: 2.5px;
             border-radius: 50%;
             background: var(--gold);
-            box-shadow:
-                0 0 6px #f8e9c0,
-                0 0 12px var(--gold);
+            box-shadow: 0 0 6px #f8e9c0, 0 0 12px var(--gold);
             pointer-events: none;
             z-index: 20;
         }
@@ -430,8 +428,8 @@
             color: #ffffff;
             text-align: center;
             text-shadow:
-                0 2px 5px rgba(0,0,0,0.8),
-                0 0 12px rgba(255,255,255,0.6);
+                0 2px 6px rgba(0,0,0,0.9),
+                0 0 12px rgba(255,255,255,0.4);
             direction: ltr;
         }
 
@@ -502,7 +500,7 @@
             color: var(--platinum-color);
             text-align: center;
             line-height: 2.1;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 12px rgba(255,255,255,0.22);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
         }
 
         /* =========================================================
@@ -514,14 +512,14 @@
             margin: 0 0 42px;
             padding: 22px 14px 20px;
             border-radius: 24px;
-            background: linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
             border: 1px solid rgba(226,232,240,0.17);
-            border-top-color: rgba(255,255,255,0.3);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            border-top-color: rgba(255,255,255,0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow:
-                0 22px 45px rgba(0,0,0,0.7),
-                inset 0 1px 0 rgba(255,255,255,0.08);
+                0 15px 35px rgba(0,0,0,0.6),
+                inset 0 1px 0 rgba(255,255,255,0.05);
         }
 
         .countdown-title {
@@ -530,7 +528,7 @@
             font-family: 'Amiri', serif;
             font-size: 1.35rem;
             color: var(--platinum-color);
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
         }
 
         .countdown-box {
@@ -554,14 +552,14 @@
             width: 88%;
             padding: 9px 2px;
             border-radius: 12px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.09);
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.08);
             color: #ffffff;
             font-family: 'Playfair Display', serif;
             font-size: 1.55rem;
             font-weight: 600;
             text-align: center;
-            text-shadow: 0 0 15px rgba(255,255,255,0.65);
+            text-shadow: 0 0 12px rgba(255,255,255,0.5);
             box-shadow: inset 0 0 12px rgba(255,255,255,0.025);
             animation: pulse-radiant 2.8s ease-in-out infinite alternate;
         }
@@ -571,7 +569,7 @@
             font-family: 'Cairo', sans-serif;
             font-size: 0.7rem;
             font-weight: 600;
-            color: #cbd5e1;
+            color: rgba(226,232,240,0.8);
         }
 
         /* =========================================================
@@ -610,7 +608,7 @@
             bottom: 10%;
             left: 0;
             width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(226,232,240,0.35), transparent);
+            background: linear-gradient(to bottom, transparent, rgba(226,232,240,0.25), transparent);
         }
 
         .icon-circle {
@@ -621,12 +619,11 @@
             justify-content: center;
             margin-bottom: 14px;
             border-radius: 50%;
-            border: 1px solid rgba(226,232,240,0.38);
-            background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(0,0,0,0.4) 70%, transparent);
+            border: 1px solid rgba(226,232,240,0.25);
+            background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(0,0,0,0.5) 70%, transparent);
             color: var(--platinum-color);
             font-size: 1.25rem;
-            box-shadow: 0 0 18px rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
         }
 
         .detail-title {
@@ -636,15 +633,15 @@
             font-weight: 600;
             color: var(--platinum-color);
             white-space: nowrap;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
         .detail-subtitle {
             font-family: 'Cairo', sans-serif;
             font-size: 0.78rem;
-            color: #cbd5e1;
+            color: rgba(226,232,240,0.8);
             line-height: 1.75;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         /* =========================================================
@@ -661,14 +658,14 @@
             margin-top: 30px;
             padding: 13px 30px;
             border-radius: 50px;
-            border: 1px solid rgba(226,232,240,0.38);
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.5));
+            border: 1px solid rgba(226,232,240,0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.6));
             color: var(--platinum-color);
             text-decoration: none;
             font-family: 'Cairo', sans-serif;
             font-size: 0.92rem;
             font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
             backdrop-filter: blur(8px);
             transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
         }
@@ -677,7 +674,7 @@
 
         .map-btn:hover {
             background: rgba(226,232,240,0.15);
-            box-shadow: 0 14px 30px rgba(0,0,0,0.7), 0 0 18px rgba(226,232,240,0.15);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.7), 0 0 15px rgba(226,232,240,0.1);
         }
 
         /* =========================================================
@@ -722,16 +719,16 @@
             font-weight: 700;
             color: var(--platinum-color);
             line-height: 2;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8), 0 0 12px rgba(255,255,255,0.22);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
         }
 
         .closing-text {
             margin: 0 0 8px;
             font-family: 'Cairo', sans-serif;
             font-size: 0.9rem;
-            color: rgba(226,232,240,0.9);
+            color: rgba(226,232,240,0.85);
             text-align: center;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         .closing-names {
@@ -740,7 +737,7 @@
             font-family: 'Amiri', serif;
             font-size: clamp(2rem, 9vw, 2.8rem);
             color: #ffffff;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.6), 0 0 15px rgba(255,255,255,0.55);
+            text-shadow: 0 3px 8px rgba(0,0,0,0.9), 0 0 15px rgba(255,255,255,0.4);
         }
 
         .closing-names .amp {
@@ -748,7 +745,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             color: rgba(226,232,240,0.85);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
         }
 
         #particles-js {
@@ -779,8 +776,8 @@
         }
 
         @keyframes nameGlow {
-            0% { text-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 25px rgba(255,255,255,0.22), 0 4px 10px rgba(0,0,0,0.5); }
-            100% { text-shadow: 0 0 20px rgba(255,255,255,0.95), 0 0 42px rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.5); }
+            0% { text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.2), 0 4px 8px rgba(0,0,0,0.7); }
+            100% { text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 35px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.7); }
         }
 
         @keyframes slowRingRotation {
@@ -792,8 +789,8 @@
         }
 
         @keyframes pulse-radiant {
-            from { opacity: 0.82; text-shadow: 0 0 10px rgba(255,255,255,0.55); }
-            to { opacity: 1; text-shadow: 0 0 22px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.3); }
+            from { opacity: 0.82; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+            to { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 35px rgba(255,255,255,0.25); }
         }
 
         @keyframes heartPulse {
@@ -802,7 +799,7 @@
         }
 
         /* =========================================================
-           MOBILE & REDUCED MOTION
+           MOBILE
         ========================================================= */
 
         @media (max-width: 380px) {
@@ -830,21 +827,17 @@
 </head>
 <body>
 
-    <!-- BACKGROUND & OVERLAYS -->
     <div class="background-layer"></div>
     <div class="background-overlay"></div>
     <div class="background-vignette"></div>
 
-    <!-- AUDIO -->
     <audio id="bg-audio" loop preload="auto">
         <source src="https://ia800504.us.archive.org/33/items/canon-in-d_202208/Canon%20in%20D.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- EFFECTS -->
     <div id="flash-white"></div>
     <div id="particles-js"></div>
 
-    <!-- SPLASH SCREEN -->
     <section id="splash" onclick="unlockInvitation()">
         <div class="splash-glow"></div>
         <p class="splash-subtitle">Wedding Invitation</p>
@@ -855,10 +848,7 @@
         <p class="splash-hint">المس الألماسة لتبدأ الحكاية</p>
     </section>
 
-    <!-- MAIN INVITATION -->
     <main id="main-invite">
-
-        <!-- BISMILLAH + VERSE -->
         <section class="intro-section">
             <h1 class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h1>
             <p class="quran-verse">
@@ -868,30 +858,25 @@
             <div class="verse-reference">(الروم - 21)</div>
         </section>
 
-        <!-- DIVIDER -->
         <div class="lux-divider">
             <div class="lux-line"></div>
             <div class="lux-symbol">~ ♡ ~</div>
             <div class="lux-line reverse"></div>
         </div>
 
-        <!-- INVITATION TEXT -->
         <section class="invitation-text">
             <p class="invitation-title">بكل حب وامتنان</p>
             <p class="invitation-subtitle">ندعوكم لمشاركتنا فرحتنا بمناسبة خطوبتنا</p>
         </section>
 
-        <!-- NAMES -->
         <div id="names-box" class="name-container" dir="ltr">
             <span class="main-name name-bride">ملاك</span>
             <span class="name-ampersand">|</span>
             <span class="main-name name-groom">محمد</span>
         </div>
 
-        <!-- DATE -->
         <div class="event-date">01 . 01 . 2028</div>
 
-        <!-- RING SHOWCASE -->
         <div class="ring-showcase">
             <div class="ring-protection">
                 <img src="ring.PNG" alt="Diamond Ring" class="the-ring" draggable="false" oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
@@ -899,13 +884,11 @@
             </div>
         </div>
 
-        <!-- ROMANTIC QUOTE -->
         <p class="romantic-quote">
             من بين كل الوجوه كنت أنتِ<br>
             ومن بين كل الأقدار كنت قدري
         </p>
 
-        <!-- COUNTDOWN -->
         <section class="countdown-glass">
             <h2 class="countdown-title">العد التنازلي لفرحتنا</h2>
             <div class="countdown-box" id="countdown-box">
@@ -928,7 +911,6 @@
             </div>
         </section>
 
-        <!-- EVENT DETAILS -->
         <section class="details-wrapper">
             <div class="details-grid">
                 <div class="detail-col">
@@ -953,14 +935,12 @@
             </a>
         </section>
 
-        <!-- LOWER DIVIDER -->
         <div class="lower-divider">
             <div class="lower-line"></div>
             <div class="heart"><i class="fa-solid fa-heart"></i></div>
             <div class="lower-line reverse"></div>
         </div>
 
-        <!-- PRAYER & CLOSING -->
         <p class="prayer">اللهم بارك لهما وبارك عليهما<br>واجمع بينهما في خير</p>
         <p class="closing-text">بحضوركم تكتمل فرحتنا</p>
         <div class="closing-names">
@@ -968,15 +948,10 @@
             <span class="amp">|</span>
             <span>محمد</span>
         </div>
-
     </main>
 
-    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        /* =========================================================
-           SPLASH & AUDIO LOGIC
-        ========================================================= */
         let isOpened = false;
 
         function unlockInvitation() {
@@ -988,11 +963,9 @@
             const audio = document.getElementById("bg-audio");
             const icon = document.getElementById("trigger-icon");
 
-            /* Diamond interaction */
             icon.style.transform = "scale(1.5)";
             icon.style.filter = "drop-shadow(0 0 40px #ffffff) brightness(1.5)";
 
-            /* Music */
             const playPromise = audio.play();
             if (playPromise !== undefined) {
                 playPromise.catch(() => {
@@ -1002,7 +975,6 @@
                 });
             }
 
-            /* Cinematic transition */
             setTimeout(() => {
                 flash.style.opacity = "1";
                 setTimeout(() => {
@@ -1011,16 +983,11 @@
                     flash.style.opacity = "0";
                     setTimeout(initParticles, 350);
                     setTimeout(startNameDust, 1200);
-                    setTimeout(() => {
-                        splash.style.display = "none";
-                    }, 1500);
+                    setTimeout(() => { splash.style.display = "none"; }, 1500);
                 }, 420);
             }, 300);
         }
 
-        /* =========================================================
-           PARTICLES
-        ========================================================= */
         function initParticles() {
             if (typeof particlesJS === "undefined") return;
             particlesJS("particles-js", {
@@ -1041,35 +1008,23 @@
             });
         }
 
-        /* =========================================================
-           GOLD DUST AROUND NAMES
-        ========================================================= */
         function startNameDust() {
             const box = document.getElementById("names-box");
             if (!box) return;
-
             setInterval(() => {
                 const dust = document.createElement("span");
                 dust.className = "gold-dust";
                 dust.style.left = (15 + Math.random() * 70) + "%";
                 dust.style.top = (30 + Math.random() * 40) + "%";
                 box.appendChild(dust);
-
                 const animation = dust.animate([
                     { transform: "translate(0,0) scale(1)", opacity: 1 },
                     { transform: `translate(${(Math.random() - 0.5) * 45}px,-${30 + Math.random() * 55}px) scale(0)`, opacity: 0 }
-                ], {
-                    duration: 2000 + Math.random() * 1500,
-                    easing: "ease-out"
-                });
-
+                ], { duration: 2000 + Math.random() * 1500, easing: "ease-out" });
                 animation.onfinish = () => { dust.remove(); };
             }, 330);
         }
 
-        /* =========================================================
-           COUNTDOWN
-        ========================================================= */
         function updateCountdown() {
             const targetDate = new Date("2028-01-01T19:30:00").getTime();
             const now = new Date().getTime();
@@ -1077,11 +1032,7 @@
 
             if (distance <= 0) {
                 const box = document.getElementById("countdown-box");
-                box.innerHTML = `
-                    <div style="width:100%; text-align:center; font-family:'Amiri',serif; font-size:1.45rem; color:#e2e8f0; padding:12px 0;">
-                        أهلاً بكم في يوم فرحتنا
-                    </div>
-                `;
+                box.innerHTML = `<div style="width:100%; text-align:center; font-family:'Amiri',serif; font-size:1.45rem; color:#e2e8f0; padding:12px 0;">أهلاً بكم في يوم فرحتنا</div>`;
                 return;
             }
 
@@ -1099,9 +1050,6 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        /* =========================================================
-           IMAGE PROTECTION & ACCESSIBILITY
-        ========================================================= */
         const ring = document.querySelector(".the-ring");
         if (ring) {
             ring.addEventListener("contextmenu", e => e.preventDefault());
@@ -1111,22 +1059,14 @@
                 setTimeout(() => { this.style.pointerEvents = "none"; }, 100);
             }, { passive: true });
         }
-
-        document.addEventListener("contextmenu", e => {
-            if (e.target.tagName === "IMG" || e.target.closest(".ring-protection")) e.preventDefault();
-        });
-
-        document.addEventListener("dragstart", e => {
-            if (e.target.tagName === "IMG") e.preventDefault();
-        });
-
+        document.addEventListener("contextmenu", e => { if (e.target.tagName === "IMG" || e.target.closest(".ring-protection")) e.preventDefault(); });
+        document.addEventListener("dragstart", e => { if (e.target.tagName === "IMG") e.preventDefault(); });
         let lastTouchEnd = 0;
         document.addEventListener("touchend", e => {
             const now = Date.now();
             if (now - lastTouchEnd <= 300) e.preventDefault();
             lastTouchEnd = now;
         }, { passive: false });
-
     </script>
 </body>
 </html>
