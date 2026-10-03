@@ -1,5 +1,5 @@
 
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
             --text-muted: #9aa3b2;
             --platinum-color: #e2e8f0;
             --ruby-red: #e11d48;
-            --dark-red: #990000; /* لون أحمر غامق جديد للقلب */
+            --dark-red: #990000; /* لون أحمر غامق للقلب */
             --gold: #d4af37;
         }
 
@@ -30,7 +30,7 @@
 
         html {
             scroll-behavior: smooth;
-            /* تم جعل اللون أسود لمنع ظهور الوميض أو الحدود البيضاء عند التمرير في الآيفون */
+            /* اللون الأسود هنا فقط لملء الفراغ عند سحب الشاشة للأسفل بقوة في الآيفون */
             background: #000000; 
         }
 
@@ -40,7 +40,8 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden !important;
-            background: #000000; /* خلفية سوداء تحت الصورة لمنع الحواف البيضاء */
+            /* تم جعل الخلفية شفافة لكي تظهر صورتك التي في الخلف */
+            background: transparent; 
             color: var(--text-main);
             position: relative;
             font-family: 'Cairo', sans-serif;
@@ -58,15 +59,13 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -20;
+            z-index: -1; /* تم التعديل لضمان بقائها خلف النص مباشرة وليس خلف المتصفح */
             background-color: #000000;
             background-image: url("background.PNG");
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover; 
         }
-
-        /* تم حذف طبقات التظليل السوداء (overlay و vignette) بالكامل لتبدو الصورة ساطعة */
 
         /* =========================================================
            SPLASH
